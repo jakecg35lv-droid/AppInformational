@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tipoff Fantasy — Snake-draft fantasy for the college basketball tournament</title>
+  <meta name="description"
+    content="Tipoff Fantasy is a snake draft fantasy game built for the college basketball tournament. Draft individual players, not brackets. Score every game until your roster is eliminated." />
+  <meta name="theme-color" content="#09090f" />
+
+  <meta property="og:title" content="Tipoff Fantasy — Draft players, not brackets" />
+  <meta property="og:description"
+    content="A snake draft league for the college basketball tournament. Your roster scores in every game it survives." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://jakecg35lv-droid.github.io/Tipoff/TIPO.png" />
+
+  <link rel="icon" href="https://jakecg35lv-droid.github.io/Tipoff/TIPO.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bebas+Neue&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ══════════════════════════════════════════════════════════
+       TIPOFF FANTASY — informational site
+       Tokens lifted verbatim from src/styles.css
+    ══════════════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #09090f;
+      --panel-solid:  #121220;
+      --panel-2:      rgba(26,26,46,0.9);
+      --panel-3:      rgba(36,36,60,0.95);
+      --text:   #e8eaf6;
+      --text-2: #c5c8e0;
+      --muted:  #6b7090;
+      --blue:       #4f8ff7;
+      --blue-light: #7eb0ff;
+      --purple:     #9b7fff;
+      --orange:     #ff6b35;
+      --gold:       #f6c54e;
+      --green:      #34d399;
+      --teal:       #22d3ee;
+      --grad-primary: linear-gradient(135deg, #4f8ff7 0%, #9b7fff 100%);
+      --grad-orange:  linear-gradient(135deg, #ff6b35 0%, #f6c54e 100%);
+      --grad-card:    linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      --border:        rgba(255,255,255,0.07);
+      --border-2:      rgba(255,255,255,0.12);
+      --shadow:      0 24px 64px rgba(0,0,0,0.7);
+      --shadow-sm:   0 6px 24px rgba(0,0,0,0.5);
+      --glow:        0 0 40px rgba(79,143,247,0.22);
+      --glow-orange: 0 0 30px rgba(255,107,53,0.28);
+      --radius:    20px;
+      --radius-sm: 13px;
+      --radius-xs:  8px;
+      --maxw: 1080px;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 50% at 50% -5%, rgba(79,143,247,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 90% 90%, rgba(155,127,255,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 30% at 10% 70%, rgba(255,107,53,0.04) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a { color: var(--blue-light); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* ── TYPE ─────────────────────────────────────────────── */
+    .display {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      display: block;
+    }
+    h2.display { font-size: clamp(38px, 6vw, 62px); margin-bottom: 14px; }
+    h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+    p { color: var(--text-2); }
+    .lede { font-size: clamp(16px, 2vw, 19px); color: var(--text-2); max-width: 62ch; }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(9,9,15,0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; gap: 28px; height: 68px; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; margin-right: auto; text-decoration: none; }
+    .nav-brand:hover { text-decoration: none; }
+    .nav-brand img { width: 32px; height: 32px; }
+    .nav-brand span {
+      font-family: 'Bebas Neue', sans-serif; font-size: 22px;
+      letter-spacing: 0.05em; color: var(--text);
+    }
+    .nav-links { display: flex; gap: 26px; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none;
+      transition: color .18s ease;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* ── BUTTONS ──────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: inherit; font-size: 15px; font-weight: 700;
+      padding: 13px 26px; border-radius: var(--radius-sm); border: none;
+      cursor: pointer; text-decoration: none; white-space: nowrap;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .btn:hover { text-decoration: none; transform: translateY(-2px); }
+    .btn-primary { background: var(--grad-primary); color: #fff; box-shadow: var(--glow); }
+    .btn-primary:hover { box-shadow: 0 0 52px rgba(79,143,247,0.34); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.04); color: var(--text);
+      border: 1px solid var(--border-2);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.08); }
+    .btn-sm { padding: 9px 18px; font-size: 14px; }
+
+    /* ── SECTION RHYTHM ───────────────────────────────────── */
+    .section { padding: 96px 0; position: relative; z-index: 1; }
+    .section-head { max-width: 700px; margin-bottom: 48px; }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero { padding: 84px 0 72px; position: relative; z-index: 1; }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .hero-logo { width: 84px; height: 84px; margin-bottom: 26px; filter: drop-shadow(0 8px 32px rgba(79,143,247,0.35)); }
+    .hero h1 {
+      font-family: 'Bebas Neue', Impact, sans-serif; font-weight: 400;
+      font-size: clamp(52px, 8vw, 92px); line-height: 0.9; letter-spacing: 0.01em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: var(--grad-orange);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 22px;
+    }
+    .hero p { font-size: 18px; margin-bottom: 30px; max-width: 46ch; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+    .hero-note { font-size: 13px; color: var(--muted); }
+
+    /* ── SIGNATURE: SNAKE BOARD ───────────────────────────── */
+    .board {
+      background: var(--panel-solid);
+      background-image: var(--grad-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      overflow: hidden;
+    }
+    .board-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border);
+    }
+    .board-title {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+    }
+    .board-clock {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--orange); display: flex; align-items: center; gap: 7px;
+    }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--orange);
+      box-shadow: var(--glow-orange); animation: pulse 1.9s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+    .board-cols {
+      display: grid; grid-template-columns: 30px repeat(4, 1fr); gap: 7px;
+      margin-bottom: 7px;
+    }
+    .board-col {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+      text-align: center; padding-bottom: 4px;
+    }
+    .board-row {
+      display: grid; grid-template-columns: 30px repeat(4, 1fr); gap: 7px; margin-bottom: 7px;
+      align-items: stretch;
+    }
+    .board-rd {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+      color: var(--muted); display: flex; align-items: center; justify-content: center;
+    }
+    .pick {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xs);
+      padding: 9px 6px;
+      text-align: center;
+      opacity: 0;
+      animation: dealIn .42s cubic-bezier(.2,.8,.3,1) forwards;
+    }
+    .pick .n {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+      color: var(--blue); display: block; margin-bottom: 3px;
+    }
+    .pick .nm {
+      font-size: 11px; font-weight: 600; color: var(--text-2);
+      display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .pick.live {
+      border-color: rgba(255,107,53,0.5);
+      background: rgba(255,107,53,0.08);
+      box-shadow: var(--glow-orange);
+    }
+    .pick.live .n { color: var(--orange); }
+    .pick.live .nm { color: var(--gold); }
+    @keyframes dealIn {
+      from { opacity: 0; transform: translateY(9px) scale(.96); }
+      to   { opacity: 1; transform: none; }
+    }
+    .board-foot {
+      margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border);
+      font-size: 12.5px; color: var(--muted); display: flex; gap: 8px; align-items: baseline;
+    }
+    .board-foot b { color: var(--text-2); font-weight: 600; }
+    .snake-arrow { color: var(--purple); font-weight: 700; }
+
+    /* ── PROBLEM / CONTRAST ───────────────────────────────── */
+    .versus { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .vs-card {
+      border-radius: var(--radius); padding: 30px;
+      border: 1px solid var(--border); background: var(--panel-solid);
+      background-image: var(--grad-card);
+    }
+    .vs-card.dim { opacity: 0.72; }
+    .vs-card.hot { border-color: rgba(79,143,247,0.35); box-shadow: var(--glow); }
+    .vs-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .vs-card.dim .vs-label { color: var(--muted); }
+    .vs-card.hot .vs-label { color: var(--blue-light); }
+    .vs-card h3 { margin-bottom: 12px; font-size: 22px; }
+    .vs-card p { font-size: 15px; }
+    .vs-list { list-style: none; margin-top: 16px; display: grid; gap: 9px; }
+    .vs-list li {
+      font-size: 14.5px; color: var(--text-2); padding-left: 22px; position: relative;
+    }
+    .vs-list li::before {
+      content: '—'; position: absolute; left: 0; color: var(--muted);
+    }
+    .vs-card.hot .vs-list li::before { content: '✓'; color: var(--green); font-weight: 700; }
+
+    /* ── STEPS ────────────────────────────────────────────── */
+    .steps { display: grid; gap: 0; border-top: 1px solid var(--border); }
+    .step {
+      display: grid; grid-template-columns: 88px 1fr 1.15fr; gap: 28px;
+      padding: 30px 0; border-bottom: 1px solid var(--border); align-items: start;
+    }
+    .step-n {
+      font-family: 'Bebas Neue', sans-serif; font-size: 46px; line-height: 1;
+      color: transparent; -webkit-text-stroke: 1px var(--border-2);
+    }
+    .step h3 { margin-bottom: 6px; }
+    .step-meta {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    }
+    .step p { font-size: 15px; }
+
+    /* ── FEATURES ─────────────────────────────────────────── */
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feat {
+      background: var(--panel-solid); background-image: var(--grad-card);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 26px; transition: border-color .2s ease, transform .2s ease;
+    }
+    .feat:hover { border-color: var(--border-2); transform: translateY(-3px); }
+    .feat-icon {
+      width: 38px; height: 38px; border-radius: 11px; margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; background: rgba(79,143,247,0.12);
+      border: 1px solid rgba(79,143,247,0.22);
+    }
+    .feat h3 { margin-bottom: 8px; }
+    .feat p { font-size: 14.5px; }
+
+    /* ── SCORING ──────────────────────────────────────────── */
+    .scoring-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .score-table {
+      background: var(--panel-solid); background-image: var(--grad-card);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 8px 22px 18px; box-shadow: var(--shadow-sm);
+    }
+    .score-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 15px 0; border-bottom: 1px solid var(--border);
+    }
+    .score-row:last-child { border-bottom: none; }
+    .score-name { font-weight: 600; font-size: 15px; }
+    .score-name small {
+      display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: 0.14em; color: var(--muted); font-weight: 700; margin-top: 2px;
+    }
+    .score-weight {
+      font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 15px;
+      color: var(--gold); background: rgba(246,197,78,0.09);
+      border: 1px solid rgba(246,197,78,0.2); border-radius: var(--radius-xs);
+      padding: 5px 13px;
+    }
+    .formula {
+      font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.9;
+      color: var(--text-2); background: rgba(0,0,0,0.35);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 18px; margin-top: 22px; overflow-x: auto; white-space: nowrap;
+    }
+    .formula b { color: var(--teal); font-weight: 700; }
+
+    /* ── FAQ ──────────────────────────────────────────────── */
+    .faq { max-width: 780px; }
+    details {
+      border-bottom: 1px solid var(--border); padding: 4px 0;
+    }
+    details summary {
+      cursor: pointer; list-style: none; padding: 20px 34px 20px 0;
+      font-weight: 600; font-size: 16.5px; position: relative;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: '+'; position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+      font-size: 22px; color: var(--muted); font-weight: 400; line-height: 1;
+    }
+    details[open] summary::after { content: '−'; color: var(--blue); }
+    details p { padding: 0 40px 22px 0; font-size: 15px; }
+
+    /* ── CTA ──────────────────────────────────────────────── */
+    .cta {
+      text-align: center; border-radius: var(--radius);
+      border: 1px solid rgba(79,143,247,0.24);
+      background: linear-gradient(135deg, #0d1b4b 0%, #1a0d3b 100%);
+      padding: 68px 32px; box-shadow: var(--shadow);
+    }
+    .cta h2 { margin-bottom: 12px; }
+    .cta p { margin: 0 auto 28px; max-width: 46ch; }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 40px 0 56px; margin-top: 96px; }
+    .foot-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+    .foot-brand { display: flex; align-items: center; gap: 10px; }
+    .foot-brand img { width: 26px; height: 26px; opacity: 0.85; }
+    .foot-brand span { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.05em; }
+    .foot-legal { font-size: 12.5px; color: var(--muted); max-width: 58ch; line-height: 1.7; }
+    .foot-links { display: flex; gap: 20px; font-size: 13.5px; }
+    .foot-links a { color: var(--text-2); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-grid, .scoring-wrap { grid-template-columns: 1fr; gap: 44px; }
+      .versus { grid-template-columns: 1fr; }
+      .features { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .section { padding: 72px 0; }
+    }
+    @media (max-width: 620px) {
+      .features { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 52px 1fr; gap: 16px; }
+      .step-desc { grid-column: 2; }
+      .step-n { font-size: 34px; }
+      .hero { padding: 56px 0 48px; }
+      .board { padding: 16px; }
+      .pick { padding: 7px 3px; }
+      .pick .nm { font-size: 10px; }
+      .cta { padding: 48px 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-delay: 0ms !important;
+        transition-duration: .001ms !important;
+      }
+      .pick { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="nav-brand" href="#top">
+        <img src="https://jakecg35lv-droid.github.io/Tipoff/TIPO.png" alt="" />
+        <span>Tipoff Fantasy</span>
+      </a>
+      <div class="nav-links">
+        <a href="#why">Why it exists</a>
+        <a href="#how">How it works</a>
+        <a href="#inside">Inside the app</a>
+        <a href="#scoring">Scoring</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a class="btn btn-primary btn-sm" href="https://jakecg35lv-droid.github.io/Tipoff/">Open the app</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <header class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <img class="hero-logo" src="https://jakecg35lv-droid.github.io/Tipoff/TIPO.png" alt="Tipoff Fantasy" />
+        <h1>Draft <em>players</em>,<br />not brackets.</h1>
+        <p class="hero-tag">Draft. Compete. Win.</p>
+        <p>
+          Tipoff Fantasy is a snake draft league for the college basketball tournament.
+          You and your friends take turns picking individual players. Every point,
+          rebound, assist, steal and block they record counts for you — until their team goes home.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://jakecg35lv-droid.github.io/Tipoff/">Open the app</a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <p class="hero-note">Free. Runs in your browser. Installs to your home screen like an app.</p>
+      </div>
+
+      <!-- SIGNATURE ELEMENT: the snake board -->
+      <div class="board" aria-label="Illustration of a four-manager snake draft board">
+        <div class="board-head">
+          <span class="board-title">Snake draft · Round 2</span>
+          <span class="board-clock"><i class="dot"></i>On the clock</span>
+        </div>
+
+        <div class="board-cols">
+          <div></div>
+          <div class="board-col">Jake</div>
+          <div class="board-col">Ty</div>
+          <div class="board-col">Sam</div>
+          <div class="board-col">Alex</div>
+        </div>
+
+        <div class="board-row">
+          <div class="board-rd">R1</div>
+          <div class="pick" style="animation-delay:.10s"><span class="n">1.01</span><span class="nm">1-seed G</span></div>
+          <div class="pick" style="animation-delay:.22s"><span class="n">1.02</span><span class="nm">1-seed F</span></div>
+          <div class="pick" style="animation-delay:.34s"><span class="n">1.03</span><span class="nm">2-seed G</span></div>
+          <div class="pick" style="animation-delay:.46s"><span class="n">1.04</span><span class="nm">1-seed C</span></div>
+        </div>
+
+        <div class="board-row">
+          <div class="board-rd">R2</div>
+          <div class="pick live" style="animation-delay:1.06s"><span class="n">2.08</span><span class="nm">On the clock</span></div>
+          <div class="pick" style="animation-delay:.94s"><span class="n">2.07</span><span class="nm">3-seed G</span></div>
+          <div class="pick" style="animation-delay:.82s"><span class="n">2.06</span><span class="nm">2-seed F</span></div>
+          <div class="pick" style="animation-delay:.70s"><span class="n">2.05</span><span class="nm">2-seed C</span></div>
+        </div>
+
+        <div class="board-row">
+          <div class="board-rd">R3</div>
+          <div class="pick" style="animation-delay:1.30s"><span class="n">3.09</span><span class="nm">—</span></div>
+          <div class="pick" style="animation-delay:1.42s"><span class="n">3.10</span><span class="nm">—</span></div>
+          <div class="pick" style="animation-delay:1.54s"><span class="n">3.11</span><span class="nm">—</span></div>
+          <div class="pick" style="animation-delay:1.66s"><span class="n">3.12</span><span class="nm">—</span></div>
+        </div>
+
+        <div class="board-foot">
+          <span class="snake-arrow">↳</span>
+          <span>Pick order reverses every round. Pick last in round one, <b>pick first in round two.</b></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════ WHY ═══════════ -->
+  <section class="section" id="why">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Why it exists</span>
+        <h2 class="display">Your bracket dies on day one.</h2>
+        <p class="lede">
+          Every March, the big platforms hand you the same thing: a bracket. You fill it out,
+          a 12-seed wins on Thursday afternoon, and you have nothing left to watch for two weeks.
+          There was never a real fantasy draft for the tournament. So we built one.
+        </p>
+      </div>
+
+      <div class="versus">
+        <div class="vs-card dim">
+          <div class="vs-label">The old way</div>
+          <h3>Bracket pool</h3>
+          <p>One set of predictions, locked before the first tip.</p>
+          <ul class="vs-list">
+            <li>Everyone picks the same favorites</li>
+            <li>Two upsets and you're mathematically out</li>
+            <li>No decisions to make after Thursday</li>
+            <li>You root for chalk, not for players</li>
+          </ul>
+        </div>
+        <div class="vs-card hot">
+          <div class="vs-label">Tipoff Fantasy</div>
+          <h3>Snake draft league</h3>
+          <p>A real draft, a real roster, and a reason to watch every game.</p>
+          <ul class="vs-list">
+            <li>Every player is owned by exactly one manager</li>
+            <li>Nobody has the same team as you</li>
+            <li>A deep run by your 11-seed sleeper wins it</li>
+            <li>You're live in every game your roster survives</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ HOW ═══════════ -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2 class="display">Five steps, start to trophy.</h2>
+        <p class="lede">The whole thing takes about twenty minutes to set up and one evening to draft.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">01</div>
+          <div>
+            <h3>Create the league</h3>
+            <div class="step-meta">Commissioner · 2 min</div>
+          </div>
+          <div class="step-desc">
+            <p>Name it, add your managers, and pick how many rounds you want to draft.
+              The app generates a six-character league code and an invite link.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-n">02</div>
+          <div>
+            <h3>Everyone joins</h3>
+            <div class="step-meta">Managers · one tap</div>
+          </div>
+          <div class="step-desc">
+            <p>Send the link. Your friends enter the code, and they're in — no app store,
+              no downloads. The draft order is set and visible to everyone before you start.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-n">03</div>
+          <div>
+            <h3>Choose the tournament</h3>
+            <div class="step-meta">Commissioner</div>
+          </div>
+          <div class="step-desc">
+            <p>Select the event your league is playing for. The player pool loads with the full
+              field — every player, their seed, and their season averages.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-n">04</div>
+          <div>
+            <h3>Snake draft</h3>
+            <div class="step-meta">Everyone · ~45 min</div>
+          </div>
+          <div class="step-desc">
+            <p>Take turns on a timer. Filter the pool by position or seed range, sort by best
+              available, and lock your pick. Order reverses each round so the last pick in round
+              one gets the first pick in round two.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-n">05</div>
+          <div>
+            <h3>Watch the standings move</h3>
+            <div class="step-meta">Through the final</div>
+          </div>
+          <div class="step-desc">
+            <p>Your roster scores in every game it plays. As teams get knocked out, your points
+              remaining shrinks — and the manager who drafted the deepest run takes it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ INSIDE ═══════════ -->
+  <section class="section" id="inside">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Inside the app</span>
+        <h2 class="display">Everything the league needs, in one place.</h2>
+      </div>
+
+      <div class="features">
+        <div class="feat">
+          <div class="feat-icon">⏱</div>
+          <h3>Draft room</h3>
+          <p>A live board with the pick clock, who's on the clock, recent picks, and undo for when
+            somebody fat-fingers the wrong guard.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">▦</div>
+          <h3>Player pool</h3>
+          <p>The full field with points, rebounds, assists, steals and blocks. Filter by seed range
+            or position, switch between list and card view, sort by best available.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">◈</div>
+          <h3>Teams &amp; rosters</h3>
+          <p>See every manager's roster at a glance, so you know exactly who took the sleeper you
+            were sitting on.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">▲</div>
+          <h3>Standings</h3>
+          <p>Ranked totals with a category breakdown, plus points remaining — the maximum you can
+            still score if every team you own wins out.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">⌇</div>
+          <h3>Bracket view</h3>
+          <p>All four regions and the Final Four, with your drafted players marked so you can see
+            your season ending in real time.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">✉</div>
+          <h3>League chat</h3>
+          <p>Trash talk stays in the app instead of getting buried in a group text about somebody's
+            weekend plans.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">⚙</div>
+          <h3>Custom scoring</h3>
+          <p>Turn categories on or off and set your own weights. Run it straight, or make blocks
+            worth triple and watch the draft strategy change.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">◷</div>
+          <h3>Pick timer &amp; alerts</h3>
+          <p>Set the clock from fifteen seconds to five minutes. Turn on browser notifications and
+            get pinged when it's your turn, even with the app closed.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">⌂</div>
+          <h3>Installs like an app</h3>
+          <p>Add it to your home screen from the browser. Full screen, its own icon, no app store
+            and no update prompts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SCORING ═══════════ -->
+  <section class="section" id="scoring">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Scoring</span>
+        <h2 class="display">Five categories. Your weights.</h2>
+      </div>
+
+      <div class="scoring-wrap">
+        <div>
+          <p class="lede" style="margin-bottom:18px;">
+            Every stat line your players produce converts into fantasy points using the weights your
+            commissioner sets. These are the defaults — assists and defense are worth more than raw
+            scoring, so the twenty-point guard who does nothing else isn't an automatic first-rounder.
+          </p>
+          <p class="lede">
+            Any category can be switched off entirely. A league that only counts rebounds and blocks
+            is a completely different draft.
+          </p>
+          <div class="formula">
+            FPTS = (PTS × <b>1.0</b>) + (REB × <b>1.2</b>) + (AST × <b>1.5</b>) + (STL × <b>2.0</b>) + (BLK × <b>2.0</b>)
+          </div>
+        </div>
+
+        <div class="score-table">
+          <div class="score-row">
+            <div class="score-name">Points<small>PTS</small></div>
+            <div class="score-weight">1.0×</div>
+          </div>
+          <div class="score-row">
+            <div class="score-name">Rebounds<small>REB</small></div>
+            <div class="score-weight">1.2×</div>
+          </div>
+          <div class="score-row">
+            <div class="score-name">Assists<small>AST</small></div>
+            <div class="score-weight">1.5×</div>
+          </div>
+          <div class="score-row">
+            <div class="score-name">Steals<small>STL</small></div>
+            <div class="score-weight">2.0×</div>
+          </div>
+          <div class="score-row">
+            <div class="score-name">Blocks<small>BLK</small></div>
+            <div class="score-weight">2.0×</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FAQ ═══════════ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Questions</span>
+        <h2 class="display">Before you commission.</h2>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary>What's a snake draft?</summary>
+          <p>Managers pick in order, then the order reverses each round. If you draft fourth out of
+            four, you pick 4th and 5th back-to-back. It keeps an early pick from being a permanent
+            advantage, which matters here because the talent drop-off after the top seeds is steep.</p>
+        </details>
+
+        <details>
+          <summary>What happens when my player's team loses?</summary>
+          <p>They stop scoring. Whatever they banked stays on your total, but they produce nothing
+            further. This is the whole game: the standings page shows your points remaining, so you
+            can see exactly how much upside you have left compared to everyone else.</p>
+        </details>
+
+        <details>
+          <summary>How many people do I need?</summary>
+          <p>It works with as few as two and comfortably handles a normal group of eight to twelve.
+            More managers means thinner rosters and a much harder draft, which is usually the fun
+            version.</p>
+        </details>
+
+        <details>
+          <summary>Do we have to draft the same night?</summary>
+          <p>No. The commissioner can pause and resume the draft, and autopick covers anyone who
+            can't make it. There's also a skip control for a manager who's stalling.</p>
+        </details>
+
+        <details>
+          <summary>Can we trade?</summary>
+          <p>Yes. Managers can propose a swap of players and the other side accepts or declines.</p>
+        </details>
+
+        <details>
+          <summary>Does it cost anything?</summary>
+          <p>No. There's no entry fee, no subscription, and no money handling of any kind inside the
+            app. If your league plays for something, that's between you.</p>
+        </details>
+
+        <details>
+          <summary>Do I need to download anything?</summary>
+          <p>No. It runs in any modern browser. On a phone you can add it to your home screen from
+            the share menu, and it opens full screen with its own icon — same feel as a native app,
+            no app store involved.</p>
+        </details>
+
+        <details>
+          <summary>Can I redo the draft?</summary>
+          <p>The commissioner can restart the league, which clears every pick and resets to round
+            one, pick one. Managers, settings, and the league code all stay the same.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CTA ═══════════ -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="cta">
+        <h2 class="display">Get your league drafting.</h2>
+        <p>Create a league, send one link, and have a full snake draft running tonight.</p>
+        <a class="btn btn-primary" href="https://jakecg35lv-droid.github.io/Tipoff/">Open the app</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div class="wrap foot-inner">
+      <div>
+        <div class="foot-brand">
+          <img src="https://jakecg35lv-droid.github.io/Tipoff/TIPO.png" alt="" />
+          <span>Tipoff Fantasy</span>
+        </div>
+        <p class="foot-legal" style="margin-top:12px;">
+          Tipoff Fantasy is an independent fantasy game and is not affiliated with, endorsed by, or
+          sponsored by the NCAA or any college, conference, or athletic association. All team and
+          player names are the property of their respective owners.
+        </p>
+      </div>
+      <div class="foot-links">
+        <a href="#how">How it works</a>
+        <a href="#scoring">Scoring</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://jakecg35lv-droid.github.io/Tipoff/">Open the app</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
