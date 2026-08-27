@@ -4,18 +4,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Tipoff Fantasy — Snake-draft fantasy for the college basketball tournament</title>
+  <title>Tipoff Fantasy — Snake-draft fantasy for college basketball tournaments</title>
   <meta name="description"
-    content="Tipoff Fantasy is a snake draft fantasy game built for the college basketball tournament. Draft individual players, not brackets. Score every game until your roster is eliminated." />
-  <meta name="theme-color" content="#09090f" />
+    content="Tipoff Fantasy is a snake draft fantasy game for college basketball tournaments. Draft individual players, not brackets. Score every game until your roster is eliminated." />
+  <meta name="theme-color" content="#060f1c" />
+  <link rel="canonical" href="https://tipofffantasy.com/" />
 
+  <!-- Open Graph -->
   <meta property="og:title" content="Tipoff Fantasy — Draft players, not brackets" />
   <meta property="og:description"
-    content="A snake draft league for the college basketball tournament. Your roster scores in every game it survives." />
+    content="A snake draft league for college basketball tournaments. Your roster scores in every game it survives." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://jakecg35lv-droid.github.io/Tipoff/TIPO.png" />
+  <meta property="og:url" content="https://tipofffantasy.com/" />
+  <meta property="og:image" content="https://tipofffantasy.com/logo-icon.png" />
+  <meta property="og:image:alt" content="Tipoff Fantasy logo" />
+  <meta property="og:site_name" content="Tipoff Fantasy" />
 
-  <link rel="icon" href="https://jakecg35lv-droid.github.io/Tipoff/TIPO.png" />
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tipoff Fantasy — Draft players, not brackets" />
+  <meta name="twitter:description"
+    content="A snake draft league for college basketball tournaments. Your roster scores in every game it survives." />
+  <meta name="twitter:image" content="https://tipofffantasy.com/logo-icon.png" />
+
+  <link rel="icon" href="https://tipofffantasy.com/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://tipofffantasy.com/favicon-32.png" />
+  <link rel="apple-touch-icon" href="https://tipofffantasy.com/apple-touch-icon.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -25,7 +40,7 @@
   <style>
     /* ══════════════════════════════════════════════════════════
        TIPOFF FANTASY — informational site
-       Tokens lifted verbatim from src/styles.css
+       Palette matched to the app: navy + orange
     ══════════════════════════════════════════════════════════ */
 
     *,
@@ -37,29 +52,38 @@
     }
 
     :root {
-      --bg: #09090f;
-      --panel-solid: #121220;
-      --panel-2: rgba(26, 26, 46, 0.9);
-      --panel-3: rgba(36, 36, 60, 0.95);
-      --text: #e8eaf6;
-      --text-2: #c5c8e0;
-      --muted: #6b7090;
-      --blue: #4f8ff7;
-      --blue-light: #7eb0ff;
-      --purple: #9b7fff;
-      --orange: #ff6b35;
-      --gold: #f6c54e;
+      /* Surfaces */
+      --bg: #060f1c;
+      --panel-solid: #0c1b2e;
+      --panel-2: rgba(16, 34, 58, 0.92);
+      --panel-3: rgba(22, 44, 72, 0.96);
+      --navy: #0d1b35;
+
+      /* Text */
+      --text: #e6eef8;
+      --text-2: #adc0d4;
+      --muted: #6c8299;
+
+      /* Accent */
+      --orange: #f26b21;
+      --orange-light: #f5893d;
+      --orange-dark: #c4530f;
+      --gold: #f6a84e;
       --green: #34d399;
       --teal: #22d3ee;
-      --grad-primary: linear-gradient(135deg, #4f8ff7 0%, #9b7fff 100%);
-      --grad-orange: linear-gradient(135deg, #ff6b35 0%, #f6c54e 100%);
+
+      --grad-primary: linear-gradient(135deg, #f26b21 0%, #f6a84e 100%);
       --grad-card: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
-      --border: rgba(255, 255, 255, 0.07);
-      --border-2: rgba(255, 255, 255, 0.12);
+
+      --border: rgba(255, 255, 255, 0.08);
+      --border-2: rgba(255, 255, 255, 0.14);
+      --border-accent: rgba(242, 107, 33, 0.28);
+
       --shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
       --shadow-sm: 0 6px 24px rgba(0, 0, 0, 0.5);
-      --glow: 0 0 40px rgba(79, 143, 247, 0.22);
-      --glow-orange: 0 0 30px rgba(255, 107, 53, 0.28);
+      --glow: 0 0 40px rgba(242, 107, 33, 0.22);
+      --glow-orange: 0 0 30px rgba(242, 107, 33, 0.35);
+
       --radius: 20px;
       --radius-sm: 13px;
       --radius-xs: 8px;
@@ -87,15 +111,15 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 90% 50% at 50% -5%, rgba(79, 143, 247, 0.09) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 40% at 90% 90%, rgba(155, 127, 255, 0.06) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 30% at 10% 70%, rgba(255, 107, 53, 0.04) 0%, transparent 50%);
+        radial-gradient(ellipse 90% 50% at 50% -5%, rgba(242, 107, 33, 0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 90% 90%, rgba(13, 27, 53, 0.55) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 30% at 10% 70%, rgba(242, 107, 33, 0.045) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
     }
 
     a {
-      color: var(--blue-light);
+      color: var(--orange-light);
       text-decoration: none;
     }
 
@@ -104,9 +128,14 @@
     }
 
     :focus-visible {
-      outline: 2px solid var(--blue);
+      outline: 2px solid var(--orange);
       outline-offset: 3px;
       border-radius: 4px;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     .wrap {
@@ -116,6 +145,24 @@
       padding: 0 24px;
       position: relative;
       z-index: 1;
+    }
+
+    /* Skip link for keyboard users */
+    .skip {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--orange);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 0 0 var(--radius-xs) 0;
+      font-weight: 700;
+      z-index: 999;
+    }
+
+    .skip:focus {
+      left: 0;
+      text-decoration: none;
     }
 
     /* ── TYPE ─────────────────────────────────────────────── */
@@ -133,7 +180,7 @@
       font-weight: 700;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--orange);
       margin-bottom: 14px;
       display: block;
     }
@@ -164,7 +211,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(9, 9, 15, 0.78);
+      background: rgba(6, 15, 28, 0.82);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
@@ -180,9 +227,10 @@
     .nav-brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
       margin-right: auto;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .nav-brand:hover {
@@ -190,15 +238,31 @@
     }
 
     .nav-brand img {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
     }
 
-    .nav-brand span {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      letter-spacing: 0.05em;
+    .nav-brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      gap: 2px;
+    }
+
+    .nav-brand-text strong {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
       color: var(--text);
+    }
+
+    .nav-brand-text small {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      color: var(--orange);
     }
 
     .nav-links {
@@ -211,6 +275,7 @@
       font-weight: 500;
       color: var(--text-2);
       text-decoration: none;
+      white-space: nowrap;
       transition: color .18s ease;
     }
 
@@ -249,7 +314,7 @@
     }
 
     .btn-primary:hover {
-      box-shadow: 0 0 52px rgba(79, 143, 247, 0.34);
+      box-shadow: 0 0 52px rgba(242, 107, 33, 0.42);
     }
 
     .btn-ghost {
@@ -294,10 +359,10 @@
     }
 
     .hero-logo {
-      width: 84px;
-      height: 84px;
+      width: 88px;
+      height: 88px;
       margin-bottom: 26px;
-      filter: drop-shadow(0 8px 32px rgba(79, 143, 247, 0.35));
+      filter: drop-shadow(0 8px 32px rgba(242, 107, 33, 0.38));
     }
 
     .hero h1 {
@@ -312,7 +377,7 @@
 
     .hero h1 em {
       font-style: normal;
-      background: var(--grad-orange);
+      background: var(--grad-primary);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -324,7 +389,7 @@
       font-weight: 700;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--orange);
       margin-bottom: 22px;
     }
 
@@ -458,7 +523,7 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       font-weight: 700;
-      color: var(--blue);
+      color: var(--orange-light);
       display: block;
       margin-bottom: 3px;
     }
@@ -474,8 +539,8 @@
     }
 
     .pick.live {
-      border-color: rgba(255, 107, 53, 0.5);
-      background: rgba(255, 107, 53, 0.08);
+      border-color: rgba(242, 107, 33, 0.55);
+      background: rgba(242, 107, 33, 0.10);
       box-shadow: var(--glow-orange);
     }
 
@@ -516,7 +581,7 @@
     }
 
     .snake-arrow {
-      color: var(--purple);
+      color: var(--orange);
       font-weight: 700;
     }
 
@@ -540,7 +605,7 @@
     }
 
     .vs-card.hot {
-      border-color: rgba(79, 143, 247, 0.35);
+      border-color: var(--border-accent);
       box-shadow: var(--glow);
     }
 
@@ -558,7 +623,7 @@
     }
 
     .vs-card.hot .vs-label {
-      color: var(--blue-light);
+      color: var(--orange);
     }
 
     .vs-card h3 {
@@ -655,7 +720,7 @@
     }
 
     .feat:hover {
-      border-color: var(--border-2);
+      border-color: var(--border-accent);
       transform: translateY(-3px);
     }
 
@@ -668,8 +733,9 @@
       align-items: center;
       justify-content: center;
       font-size: 17px;
-      background: rgba(79, 143, 247, 0.12);
-      border: 1px solid rgba(79, 143, 247, 0.22);
+      color: var(--orange);
+      background: rgba(242, 107, 33, 0.12);
+      border: 1px solid rgba(242, 107, 33, 0.24);
     }
 
     .feat h3 {
@@ -728,9 +794,9 @@
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
       font-size: 15px;
-      color: var(--gold);
-      background: rgba(246, 197, 78, 0.09);
-      border: 1px solid rgba(246, 197, 78, 0.2);
+      color: var(--orange);
+      background: rgba(242, 107, 33, 0.10);
+      border: 1px solid rgba(242, 107, 33, 0.24);
       border-radius: var(--radius-xs);
       padding: 5px 13px;
     }
@@ -750,7 +816,7 @@
     }
 
     .formula b {
-      color: var(--teal);
+      color: var(--orange-light);
       font-weight: 700;
     }
 
@@ -791,7 +857,7 @@
 
     details[open] summary::after {
       content: '−';
-      color: var(--blue);
+      color: var(--orange);
     }
 
     details p {
@@ -803,8 +869,8 @@
     .cta {
       text-align: center;
       border-radius: var(--radius);
-      border: 1px solid rgba(79, 143, 247, 0.24);
-      background: linear-gradient(135deg, #0d1b4b 0%, #1a0d3b 100%);
+      border: 1px solid var(--border-accent);
+      background: linear-gradient(135deg, #0d1b35 0%, #08131f 100%);
       padding: 68px 32px;
       box-shadow: var(--shadow);
     }
@@ -830,25 +896,40 @@
       justify-content: space-between;
       gap: 20px;
       flex-wrap: wrap;
-      align-items: center;
+      align-items: flex-start;
     }
 
     .foot-brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
     }
 
     .foot-brand img {
-      width: 26px;
-      height: 26px;
-      opacity: 0.85;
+      width: 28px;
+      height: 28px;
+      opacity: 0.9;
     }
 
-    .foot-brand span {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 18px;
-      letter-spacing: 0.05em;
+    .foot-brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      gap: 2px;
+    }
+
+    .foot-brand-text strong {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .foot-brand-text small {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      color: var(--orange);
     }
 
     .foot-legal {
@@ -858,14 +939,52 @@
       line-height: 1.7;
     }
 
+    .foot-right {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: flex-end;
+    }
+
     .foot-links {
       display: flex;
       gap: 20px;
       font-size: 13.5px;
+      flex-wrap: wrap;
     }
 
     .foot-links a {
       color: var(--text-2);
+    }
+
+    .foot-socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .foot-social {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-2);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      transition: color .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .foot-social:hover {
+      color: var(--orange);
+      border-color: var(--border-accent);
+      background: rgba(242, 107, 33, 0.10);
+      text-decoration: none;
+    }
+
+    .foot-social svg {
+      width: 17px;
+      height: 17px;
     }
 
     /* ── RESPONSIVE ───────────────────────────────────────── */
@@ -885,12 +1004,44 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .section {
+        padding: 72px 0;
+      }
+
+      /* Nav links scroll horizontally instead of disappearing */
+      .nav-inner {
+        gap: 16px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 18px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        margin-right: auto;
+      }
+
+      .nav-links::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-brand {
+        margin-right: 0;
+      }
+
+      .foot-right {
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 700px) {
       .nav-links {
         display: none;
       }
 
-      .section {
-        padding: 72px 0;
+      .nav-brand {
+        margin-right: auto;
       }
     }
 
@@ -931,6 +1082,10 @@
       .cta {
         padding: 48px 22px;
       }
+
+      .foot-inner {
+        flex-direction: column;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -955,12 +1110,17 @@
 
 <body>
 
+  <a class="skip" href="#main">Skip to content</a>
+
   <!-- ═══════════ NAV ═══════════ -->
   <nav class="nav">
     <div class="wrap nav-inner">
-      <a class="nav-brand" href="#top">
-        <img src="https://jakecg35lv-droid.github.io/Tipoff/TIPO.png" alt="" />
-        <span>Tipoff Fantasy</span>
+      <a class="nav-brand" href="#top" aria-label="Tipoff Fantasy home">
+        <img src="https://tipofffantasy.com/logo-icon.png" alt="" width="34" height="34" />
+        <span class="nav-brand-text">
+          <strong>TIPOFF</strong>
+          <small>FANTASY</small>
+        </span>
       </a>
       <div class="nav-links">
         <a href="#why">Why it exists</a>
@@ -977,11 +1137,12 @@
   <header class="hero" id="top">
     <div class="wrap hero-grid">
       <div>
-        <img class="hero-logo" src="https://jakecg35lv-droid.github.io/Tipoff/TIPO.png" alt="Tipoff Fantasy" />
+        <img class="hero-logo" src="https://tipofffantasy.com/logo-icon.png" alt="Tipoff Fantasy" width="88"
+          height="88" />
         <h1>Draft <em>players</em>,<br />not brackets.</h1>
         <p class="hero-tag">Draft. Compete. Win.</p>
         <p>
-          Tipoff Fantasy is a snake draft league for the college basketball tournament.
+          Tipoff Fantasy is a snake draft league for college basketball tournaments.
           You and your friends take turns picking individual players. Every point,
           rebound, assist, steal and block they record counts for you — until their team goes home.
         </p>
@@ -993,13 +1154,14 @@
       </div>
 
       <!-- SIGNATURE ELEMENT: the snake board -->
-      <div class="board" aria-label="Illustration of a four-manager snake draft board">
+      <div class="board" role="img"
+        aria-label="Illustration of a four-manager snake draft board showing pick order reversing in round two">
         <div class="board-head">
           <span class="board-title">Snake draft · Round 2</span>
-          <span class="board-clock"><i class="dot"></i>On the clock</span>
+          <span class="board-clock"><i class="dot" aria-hidden="true"></i>On the clock</span>
         </div>
 
-        <div class="board-cols">
+        <div class="board-cols" aria-hidden="true">
           <div></div>
           <div class="board-col">Jake</div>
           <div class="board-col">Ty</div>
@@ -1007,7 +1169,7 @@
           <div class="board-col">Alex</div>
         </div>
 
-        <div class="board-row">
+        <div class="board-row" aria-hidden="true">
           <div class="board-rd">R1</div>
           <div class="pick" style="animation-delay:.10s"><span class="n">1.01</span><span class="nm">1-seed G</span>
           </div>
@@ -1019,7 +1181,7 @@
           </div>
         </div>
 
-        <div class="board-row">
+        <div class="board-row" aria-hidden="true">
           <div class="board-rd">R2</div>
           <div class="pick live" style="animation-delay:1.06s"><span class="n">2.08</span><span class="nm">On the
               clock</span></div>
@@ -1031,7 +1193,7 @@
           </div>
         </div>
 
-        <div class="board-row">
+        <div class="board-row" aria-hidden="true">
           <div class="board-rd">R3</div>
           <div class="pick" style="animation-delay:1.30s"><span class="n">3.09</span><span class="nm">—</span></div>
           <div class="pick" style="animation-delay:1.42s"><span class="n">3.10</span><span class="nm">—</span></div>
@@ -1040,326 +1202,355 @@
         </div>
 
         <div class="board-foot">
-          <span class="snake-arrow">↳</span>
+          <span class="snake-arrow" aria-hidden="true">↳</span>
           <span>Pick order reverses every round. Pick last in round one, <b>pick first in round two.</b></span>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- ═══════════ WHY ═══════════ -->
-  <section class="section" id="why">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Why it exists</span>
-        <h2 class="display">Your bracket dies on day one.</h2>
-        <p class="lede">
-          Every March, the big platforms hand you the same thing: a bracket. You fill it out,
-          a 12-seed wins on Thursday afternoon, and you have nothing left to watch for two weeks.
-          There was never a real fantasy draft for the tournament. So we built one.
-        </p>
-      </div>
+  <main id="main">
 
-      <div class="versus">
-        <div class="vs-card dim">
-          <div class="vs-label">The old way</div>
-          <h3>Bracket pool</h3>
-          <p>One set of predictions, locked before the first tip.</p>
-          <ul class="vs-list">
-            <li>Everyone picks the same favorites</li>
-            <li>Two upsets and you're mathematically out</li>
-            <li>No decisions to make after Thursday</li>
-            <li>You root for chalk, not for players</li>
-          </ul>
-        </div>
-        <div class="vs-card hot">
-          <div class="vs-label">Tipoff Fantasy</div>
-          <h3>Snake draft league</h3>
-          <p>A real draft, a real roster, and a reason to watch every game.</p>
-          <ul class="vs-list">
-            <li>Every player is owned by exactly one manager</li>
-            <li>Nobody has the same team as you</li>
-            <li>A deep run by your 11-seed sleeper wins it</li>
-            <li>You're live in every game your roster survives</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════ HOW ═══════════ -->
-  <section class="section" id="how">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">How it works</span>
-        <h2 class="display">Five steps, start to trophy.</h2>
-        <p class="lede">The whole thing takes about twenty minutes to set up and one evening to draft.</p>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-n">01</div>
-          <div>
-            <h3>Create the league</h3>
-            <div class="step-meta">Commissioner · 2 min</div>
-          </div>
-          <div class="step-desc">
-            <p>Name it, add your managers, and pick how many rounds you want to draft.
-              The app generates a six-character league code and an invite link.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-n">02</div>
-          <div>
-            <h3>Everyone joins</h3>
-            <div class="step-meta">Managers · one tap</div>
-          </div>
-          <div class="step-desc">
-            <p>Send the link. Your friends enter the code, and they're in — no app store,
-              no downloads. The draft order is set and visible to everyone before you start.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-n">03</div>
-          <div>
-            <h3>Choose the tournament</h3>
-            <div class="step-meta">Commissioner</div>
-          </div>
-          <div class="step-desc">
-            <p>Select the event your league is playing for. The player pool loads with the full
-              field — every player, their seed, and their season averages.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-n">04</div>
-          <div>
-            <h3>Snake draft</h3>
-            <div class="step-meta">Everyone · ~45 min</div>
-          </div>
-          <div class="step-desc">
-            <p>Take turns on a timer. Filter the pool by position or seed range, sort by best
-              available, and lock your pick. Order reverses each round so the last pick in round
-              one gets the first pick in round two.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-n">05</div>
-          <div>
-            <h3>Watch the standings move</h3>
-            <div class="step-meta">Through the final</div>
-          </div>
-          <div class="step-desc">
-            <p>Your roster scores in every game it plays. As teams get knocked out, your points
-              remaining shrinks — and the manager who drafted the deepest run takes it.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════ INSIDE ═══════════ -->
-  <section class="section" id="inside">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Inside the app</span>
-        <h2 class="display">Everything the league needs, in one place.</h2>
-      </div>
-
-      <div class="features">
-        <div class="feat">
-          <div class="feat-icon">⏱</div>
-          <h3>Draft room</h3>
-          <p>A live board with the pick clock, who's on the clock, recent picks, and undo for when
-            somebody fat-fingers the wrong guard.</p>
-        </div>
-        <div class="feat">
-          <div class="feat-icon">▦</div>
-          <h3>Player pool</h3>
-          <p>The full field with points, rebounds, assists, steals and blocks. Filter by seed range
-            or position, switch between list and card view, sort by best available.</p>
-        </div>
-        <div class="feat">
-          <div class="feat-icon">◈</div>
-          <h3>Teams &amp; rosters</h3>
-          <p>See every manager's roster at a glance, so you know exactly who took the sleeper you
-            were sitting on.</p>
-        </div>
-        <div class="feat">
-          <div class="feat-icon">▲</div>
-          <h3>Standings</h3>
-          <p>Ranked totals with a category breakdown, plus points remaining — the maximum you can
-            still score if every team you own wins out.</p>
-        </div>
-        <div class="feat">
-          <div class="feat-icon">⌇</div>
-          <h3>Bracket view</h3>
-          <p>All four regions and the Final Four, with your drafted players marked so you can see
-            your season ending in real time.</p>
-        </div>
-        <div class="feat">
-          <div class="feat-icon">✉</div>
-          <h3>League chat</h3>
-          <p>Trash talk stays in the app instead of getting buried in a group text about somebody's
-            weekend plans.</p>
-        </div>
-        <div class="feat">
-          <div class="feat-icon">⚙</div>
-          <h3>Custom scoring</h3>
-          <p>Turn categories on or off and set your own weights. Run it straight, or make blocks
-            worth triple and watch the draft strategy change.</p>
-        </div>
-        <div class="feat">
-          <div class="feat-icon">◷</div>
-          <h3>Pick timer &amp; alerts</h3>
-          <p>Set the clock from fifteen seconds to five minutes. Turn on browser notifications and
-            get pinged when it's your turn, even with the app closed.</p>
-        </div>
-        <div class="feat">
-          <div class="feat-icon">⌂</div>
-          <h3>Installs like an app</h3>
-          <p>Add it to your home screen from the browser. Full screen, its own icon, no app store
-            and no update prompts.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════ SCORING ═══════════ -->
-  <section class="section" id="scoring">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Scoring</span>
-        <h2 class="display">Five categories. Your weights.</h2>
-      </div>
-
-      <div class="scoring-wrap">
-        <div>
-          <p class="lede" style="margin-bottom:18px;">
-            Every stat line your players produce converts into fantasy points using the weights your
-            commissioner sets. These are the defaults — assists and defense are worth more than raw
-            scoring, so the twenty-point guard who does nothing else isn't an automatic first-rounder.
-          </p>
+    <!-- ═══════════ WHY ═══════════ -->
+    <section class="section" id="why">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Why it exists</span>
+          <h2 class="display">Your bracket dies on day one.</h2>
           <p class="lede">
-            Any category can be switched off entirely. A league that only counts rebounds and blocks
-            is a completely different draft.
+            Every March, the big platforms hand you the same thing: a bracket. You fill it out,
+            a 12-seed wins on Thursday afternoon, and you have nothing left to watch for two weeks.
+            There was never a real fantasy draft for the tournament. So we built one.
           </p>
-          <div class="formula">
-            FPTS = (PTS × <b>1.0</b>) + (REB × <b>1.2</b>) + (AST × <b>1.5</b>) + (STL × <b>2.0</b>) + (BLK ×
-            <b>2.0</b>)
-          </div>
         </div>
 
-        <div class="score-table">
-          <div class="score-row">
-            <div class="score-name">Points<small>PTS</small></div>
-            <div class="score-weight">1.0×</div>
+        <div class="versus">
+          <div class="vs-card dim">
+            <div class="vs-label">The old way</div>
+            <h3>Bracket pool</h3>
+            <p>One set of predictions, locked before the first tip.</p>
+            <ul class="vs-list">
+              <li>Everyone picks the same favorites</li>
+              <li>Two upsets and you're mathematically out</li>
+              <li>No decisions to make after Thursday</li>
+              <li>You root for chalk, not for players</li>
+            </ul>
           </div>
-          <div class="score-row">
-            <div class="score-name">Rebounds<small>REB</small></div>
-            <div class="score-weight">1.2×</div>
-          </div>
-          <div class="score-row">
-            <div class="score-name">Assists<small>AST</small></div>
-            <div class="score-weight">1.5×</div>
-          </div>
-          <div class="score-row">
-            <div class="score-name">Steals<small>STL</small></div>
-            <div class="score-weight">2.0×</div>
-          </div>
-          <div class="score-row">
-            <div class="score-name">Blocks<small>BLK</small></div>
-            <div class="score-weight">2.0×</div>
+          <div class="vs-card hot">
+            <div class="vs-label">Tipoff Fantasy</div>
+            <h3>Snake draft league</h3>
+            <p>A real draft, a real roster, and a reason to watch every game.</p>
+            <ul class="vs-list">
+              <li>Every player is owned by exactly one manager</li>
+              <li>Nobody has the same team as you</li>
+              <li>A deep run by your 11-seed sleeper wins it</li>
+              <li>You're live in every game your roster survives</li>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══════════ FAQ ═══════════ -->
-  <section class="section" id="faq">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Questions</span>
-        <h2 class="display">Before you commission.</h2>
+    <!-- ═══════════ HOW ═══════════ -->
+    <section class="section" id="how">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">How it works</span>
+          <h2 class="display">Five steps, start to trophy.</h2>
+          <p class="lede">The whole thing takes about twenty minutes to set up and one evening to draft.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-n">01</div>
+            <div>
+              <h3>Create the league</h3>
+              <div class="step-meta">Commissioner · 2 min</div>
+            </div>
+            <div class="step-desc">
+              <p>Name it, set how many managers can join, and pick how many rounds you want to draft.
+                The app generates a six-character league code and an invite link.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">02</div>
+            <div>
+              <h3>Everyone joins</h3>
+              <div class="step-meta">Managers · one tap</div>
+            </div>
+            <div class="step-desc">
+              <p>Send the link. Your friends enter the code, and they're in — no app store,
+                no downloads. The draft order is set and visible to everyone before you start.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">03</div>
+            <div>
+              <h3>Choose the tournament</h3>
+              <div class="step-meta">Commissioner</div>
+            </div>
+            <div class="step-desc">
+              <p>Pick the event your league is playing for — an eight-team in-season tournament like
+                Maui or Battle 4 Atlantis, or the full 64-team postseason field. The player pool and
+                bracket load to match.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">04</div>
+            <div>
+              <h3>Snake draft</h3>
+              <div class="step-meta">Everyone · ~45 min</div>
+            </div>
+            <div class="step-desc">
+              <p>Schedule it in advance and everyone gets a countdown, or start it on the spot. Take
+                turns on a timer, filter the pool, sort by best available, and lock your pick. Order
+                reverses each round so the last pick in round one gets the first pick in round two.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">05</div>
+            <div>
+              <h3>Watch the standings move</h3>
+              <div class="step-meta">Through the final</div>
+            </div>
+            <div class="step-desc">
+              <p>Your roster scores in every game it plays. As teams get knocked out, your points
+                remaining shrinks — and the manager who drafted the deepest run takes it.</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="faq">
-        <details open>
-          <summary>What's a snake draft?</summary>
-          <p>Managers pick in order, then the order reverses each round. If you draft fourth out of
-            four, you pick 4th and 5th back-to-back. It keeps an early pick from being a permanent
-            advantage, which matters here because the talent drop-off after the top seeds is steep.</p>
-        </details>
+    <!-- ═══════════ INSIDE ═══════════ -->
+    <section class="section" id="inside">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Inside the app</span>
+          <h2 class="display">Everything the league needs, in one place.</h2>
+        </div>
 
-        <details>
-          <summary>What happens when my player's team loses?</summary>
-          <p>They stop scoring. Whatever they banked stays on your total, but they produce nothing
-            further. This is the whole game: the standings page shows your points remaining, so you
-            can see exactly how much upside you have left compared to everyone else.</p>
-        </details>
-
-        <details>
-          <summary>How many people do I need?</summary>
-          <p>It works with as few as two and comfortably handles a normal group of eight to twelve.
-            More managers means thinner rosters and a much harder draft, which is usually the fun
-            version.</p>
-        </details>
-
-        <details>
-          <summary>Do we have to draft the same night?</summary>
-          <p>No. The commissioner can pause and resume the draft, and autopick covers anyone who
-            can't make it. There's also a skip control for a manager who's stalling.</p>
-        </details>
-
-        <details>
-          <summary>Can we trade?</summary>
-          <p>Yes. Managers can propose a swap of players and the other side accepts or declines.</p>
-        </details>
-
-        <details>
-          <summary>Does it cost anything?</summary>
-          <p>No. There's no entry fee, no subscription, and no money handling of any kind inside the
-            app. If your league plays for something, that's between you.</p>
-        </details>
-
-        <details>
-          <summary>Do I need to download anything?</summary>
-          <p>No. It runs in any modern browser. On a phone you can add it to your home screen from
-            the share menu, and it opens full screen with its own icon — same feel as a native app,
-            no app store involved.</p>
-        </details>
-
-        <details>
-          <summary>Can I redo the draft?</summary>
-          <p>The commissioner can restart the league, which clears every pick and resets to round
-            one, pick one. Managers, settings, and the league code all stay the same.</p>
-        </details>
+        <div class="features">
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">⏱</div>
+            <h3>Draft room</h3>
+            <p>A live board with the pick clock, who's on the clock, recent picks, and undo for when
+              somebody fat-fingers the wrong guard.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">▦</div>
+            <h3>Player pool</h3>
+            <p>The full field with points, rebounds, assists, steals and blocks. Filter by position or
+              seed, switch between list and card view, sort by best available.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">◈</div>
+            <h3>Teams &amp; rosters</h3>
+            <p>See every manager's roster at a glance, so you know exactly who took the sleeper you
+              were sitting on.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">▲</div>
+            <h3>Standings</h3>
+            <p>Ranked totals with a category breakdown, plus points remaining — the maximum you can
+              still score if every team you own wins out.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">⌇</div>
+            <h3>Bracket view</h3>
+            <p>The full bracket for whichever tournament you picked, with your drafted players marked
+              so you can watch your season end in real time.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">✉</div>
+            <h3>League chat</h3>
+            <p>Trash talk stays in the app instead of getting buried in a group text about somebody's
+              weekend plans.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">◫</div>
+            <h3>Latest updates</h3>
+            <p>A college basketball news feed inside the app, filtered to the teams in your tournament
+              so you catch an injury before you draft the guy.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">◷</div>
+            <h3>Scheduled drafts</h3>
+            <p>Set a date and time and every manager sees the same countdown on their home screen.
+              No group text trying to pin down a Tuesday.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">⚙</div>
+            <h3>Custom scoring</h3>
+            <p>Turn categories on or off and set your own weights. Run it straight, or make blocks
+              worth triple and watch the draft strategy change.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">◔</div>
+            <h3>Pick timer &amp; alerts</h3>
+            <p>Set the clock to whatever your league can tolerate. Turn on browser notifications and
+              get pinged when it's your turn, even with the app closed.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">⌂</div>
+            <h3>Installs like an app</h3>
+            <p>Add it to your home screen from the browser. Full screen, its own icon, no app store
+              and no update prompts.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">⇄</div>
+            <h3>Autopick &amp; skip</h3>
+            <p>Somebody late to the draft? Autopick takes the best available on their behalf, or skip
+              them and come back around.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══════════ CTA ═══════════ -->
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <div class="cta">
-        <h2 class="display">Get your league drafting.</h2>
-        <p>Create a league, send one link, and have a full snake draft running tonight.</p>
-        <a class="btn btn-primary" href="https://tipofffantasy.com/">Open the app</a>
+    <!-- ═══════════ SCORING ═══════════ -->
+    <section class="section" id="scoring">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Scoring</span>
+          <h2 class="display">Five categories. Your weights.</h2>
+        </div>
+
+        <div class="scoring-wrap">
+          <div>
+            <p class="lede" style="margin-bottom:18px;">
+              Every stat line your players produce converts into fantasy points using the weights your
+              commissioner sets. These are the defaults — assists and defense are worth more than raw
+              scoring, so the twenty-point guard who does nothing else isn't an automatic first-rounder.
+            </p>
+            <p class="lede">
+              Any category can be switched off entirely. A league that only counts rebounds and blocks
+              is a completely different draft.
+            </p>
+            <div class="formula">
+              FPTS = (PTS × <b>1.0</b>) + (REB × <b>1.2</b>) + (AST × <b>1.5</b>) + (STL × <b>2.0</b>) + (BLK ×
+              <b>2.0</b>)
+            </div>
+          </div>
+
+          <div class="score-table">
+            <div class="score-row">
+              <div class="score-name">Points<small>PTS</small></div>
+              <div class="score-weight">1.0×</div>
+            </div>
+            <div class="score-row">
+              <div class="score-name">Rebounds<small>REB</small></div>
+              <div class="score-weight">1.2×</div>
+            </div>
+            <div class="score-row">
+              <div class="score-name">Assists<small>AST</small></div>
+              <div class="score-weight">1.5×</div>
+            </div>
+            <div class="score-row">
+              <div class="score-name">Steals<small>STL</small></div>
+              <div class="score-weight">2.0×</div>
+            </div>
+            <div class="score-row">
+              <div class="score-name">Blocks<small>BLK</small></div>
+              <div class="score-weight">2.0×</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- ═══════════ FAQ ═══════════ -->
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Questions</span>
+          <h2 class="display">Before you commission.</h2>
+        </div>
+
+        <div class="faq">
+          <details open>
+            <summary>What's a snake draft?</summary>
+            <p>Managers pick in order, then the order reverses each round. If you draft fourth out of
+              four, you pick 4th and 5th back-to-back. It keeps an early pick from being a permanent
+              advantage, which matters here because the talent drop-off after the top seeds is steep.</p>
+          </details>
+
+          <details>
+            <summary>What happens when my player's team loses?</summary>
+            <p>They stop scoring. Whatever they banked stays on your total, but they produce nothing
+              further. This is the whole game: the standings page shows your points remaining, so you
+              can see exactly how much upside you have left compared to everyone else.</p>
+          </details>
+
+          <details>
+            <summary>Which tournaments can we play?</summary>
+            <p>Eight-team in-season events like the Maui Invitational and Battle 4 Atlantis, plus the
+              full 64-team postseason bracket. The commissioner picks one when the league is set up,
+              and the player pool and bracket load to match that field.</p>
+          </details>
+
+          <details>
+            <summary>How many people do I need?</summary>
+            <p>It works with as few as two and comfortably handles a normal group of eight to twelve.
+              More managers means thinner rosters and a much harder draft, which is usually the fun
+              version.</p>
+          </details>
+
+          <details>
+            <summary>Do we have to draft the same night?</summary>
+            <p>You draft together in one sitting, but you can schedule it ahead of time — set a date
+              and everyone gets a countdown. The commissioner can pause and resume, autopick covers
+              anyone who can't make it, and there's a skip control for a manager who's stalling.</p>
+          </details>
+
+          <details>
+            <summary>Does it cost anything?</summary>
+            <p>No. There's no entry fee, no subscription, and no money handling of any kind inside the
+              app. If your league plays for something, that's between you.</p>
+          </details>
+
+          <details>
+            <summary>Do I need to download anything?</summary>
+            <p>No. It runs in any modern browser. On a phone you can add it to your home screen from
+              the share menu, and it opens full screen with its own icon — same feel as a native app,
+              no app store involved.</p>
+          </details>
+
+          <details>
+            <summary>Can I redo the draft?</summary>
+            <p>The commissioner can restart the league, which clears every pick and resets to round
+              one, pick one. Managers, settings, and the league code all stay the same.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CTA ═══════════ -->
+    <section class="section" style="padding-top:0;">
+      <div class="wrap">
+        <div class="cta">
+          <h2 class="display">Get your league drafting.</h2>
+          <p>Create a league, send one link, and have a full snake draft running tonight.</p>
+          <a class="btn btn-primary" href="https://tipofffantasy.com/">Open the app</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- ═══════════ FOOTER ═══════════ -->
   <footer>
     <div class="wrap foot-inner">
       <div>
         <div class="foot-brand">
-          <img src="https://jakecg35lv-droid.github.io/Tipoff/TIPO.png" alt="" />
-          <span>Tipoff Fantasy</span>
+          <img src="https://tipofffantasy.com/logo-icon.png" alt="" width="28" height="28" />
+          <span class="foot-brand-text">
+            <strong>TIPOFF</strong>
+            <small>FANTASY</small>
+          </span>
         </div>
         <p class="foot-legal" style="margin-top:12px;">
           Tipoff Fantasy is an independent fantasy game and is not affiliated with, endorsed by, or
@@ -1367,14 +1558,98 @@
           player names are the property of their respective owners.
         </p>
       </div>
-      <div class="foot-links">
-        <a href="#how">How it works</a>
-        <a href="#scoring">Scoring</a>
-        <a href="#faq">FAQ</a>
-        <a href="https://tipofffantasy.com/">Open the app</a>
+      <div class="foot-right">
+        <div class="foot-links">
+          <a href="#how">How it works</a>
+          <a href="#scoring">Scoring</a>
+          <a href="#faq">FAQ</a>
+          <a href="https://tipofffantasy.com/">Open the app</a>
+        </div>
+        <div class="foot-socials">
+          <a class="foot-social" href="https://x.com/tipofffantasy" target="_blank" rel="noopener noreferrer"
+            aria-label="Tipoff Fantasy on X">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+          <a class="foot-social" href="https://www.instagram.com/playtipoff/" target="_blank" rel="noopener noreferrer"
+            aria-label="Tipoff Fantasy on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
+          <a class="foot-social" href="https://www.tiktok.com/@tipofffantasy" target="_blank" rel="noopener noreferrer"
+            aria-label="Tipoff Fantasy on TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06V9.68a5.67 5.67 0 0 0-.77-.05A5.66 5.66 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48z" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </footer>
+
+  <!-- FAQ structured data for search results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What's a snake draft?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Managers pick in order, then the order reverses each round. If you draft fourth out of four, you pick 4th and 5th back-to-back. It keeps an early pick from being a permanent advantage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens when my player's team loses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They stop scoring. Whatever they banked stays on your total, but they produce nothing further. The standings page shows your points remaining so you can see how much upside you have left."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which tournaments can we play?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eight-team in-season events like the Maui Invitational and Battle 4 Atlantis, plus the full 64-team postseason bracket. The commissioner picks one when the league is set up."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many people do I need?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It works with as few as two and comfortably handles a normal group of eight to twelve managers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it cost anything?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. There is no entry fee, no subscription, and no money handling of any kind inside the app."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to download anything?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It runs in any modern browser. On a phone you can add it to your home screen and it opens full screen with its own icon."
+        }
+      }
+    ]
+  }
+  </script>
 
 </body>
 
