@@ -4,22 +4,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Tipoff Fantasy — Snake-draft fantasy for college basketball tournaments</title>
-  <meta name="description" content="Tipoff Fantasy is a snake draft fantasy game for college basketball tournaments. Draft individual players, not brackets. Score every game until your roster is eliminated." />
+  <title>Inside the Tipoff Fantasy app — Every feature</title>
+  <meta name="description" content="Draft room, player pool, standings, bracket view, league chat, news feed, scheduled drafts and custom scoring." />
   <meta name="theme-color" content="#060f1c" />
-  <link rel="canonical" href="https://tipofffantasy.com/" />
+  <link rel="canonical" href="https://tipofffantasy.com/inside.html" />
 
-  <meta property="og:title" content="Tipoff Fantasy — Snake-draft fantasy for college basketball tournaments" />
-  <meta property="og:description" content="Tipoff Fantasy is a snake draft fantasy game for college basketball tournaments. Draft individual players, not brackets. Score every game until your roster is eliminated." />
+  <meta property="og:title" content="Inside the Tipoff Fantasy app — Every feature" />
+  <meta property="og:description" content="Draft room, player pool, standings, bracket view, league chat, news feed, scheduled drafts and custom scoring." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tipofffantasy.com/" />
+  <meta property="og:url" content="https://tipofffantasy.com/inside.html" />
   <meta property="og:image" content="https://app.tipofffantasy.com/logo-icon.png" />
   <meta property="og:image:alt" content="Tipoff Fantasy logo" />
   <meta property="og:site_name" content="Tipoff Fantasy" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Tipoff Fantasy — Snake-draft fantasy for college basketball tournaments" />
-  <meta name="twitter:description" content="Tipoff Fantasy is a snake draft fantasy game for college basketball tournaments. Draft individual players, not brackets. Score every game until your roster is eliminated." />
+  <meta name="twitter:title" content="Inside the Tipoff Fantasy app — Every feature" />
+  <meta name="twitter:description" content="Draft room, player pool, standings, bracket view, league chat, news feed, scheduled drafts and custom scoring." />
   <meta name="twitter:image" content="https://app.tipofffantasy.com/logo-icon.png" />
 
   <link rel="icon" href="https://app.tipofffantasy.com/favicon.ico" sizes="any" />
@@ -45,7 +45,7 @@
       <div class="nav-links">
         <a href="why.html">Why it exists</a>
         <a href="how.html">How it works</a>
-        <a href="inside.html">Inside the app</a>
+        <a href="inside.html" class="active">Inside the app</a>
         <a href="scoring.html">Scoring</a>
         <a href="faq.html">FAQ</a>
       </div>
@@ -53,82 +53,91 @@
     </div>
   </nav>
 
-  <header class="hero" id="top">
-    <div class="wrap hero-grid">
-      <div>
-        <img class="hero-logo" src="https://app.tipofffantasy.com/logo-icon.png" alt="Tipoff Fantasy" width="88"
-          height="88" />
-        <h1>Draft <em>players</em>,<br />not brackets.</h1>
-        <p class="hero-tag">Draft. Compete. Win.</p>
-        <p>
-          Tipoff Fantasy is a snake draft league for college basketball tournaments.
-          You and your friends take turns picking individual players. Every point,
-          rebound, assist, steal and block they record counts for you — until their team goes home.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="https://app.tipofffantasy.com/">Open the app</a>
-          <a class="btn btn-ghost" href="how.html">See how it works</a>
-        </div>
-        <p class="hero-note">Free. Runs in your browser. Installs to your home screen like an app.</p>
-      </div>
-
-      <!-- SIGNATURE ELEMENT: the snake board -->
-      <div class="board" role="img"
-        aria-label="Illustration of a four-manager snake draft board showing pick order reversing in round two">
-        <div class="board-head">
-          <span class="board-title">Snake draft · Round 2</span>
-          <span class="board-clock"><i class="dot" aria-hidden="true"></i>On the clock</span>
-        </div>
-
-        <div class="board-cols" aria-hidden="true">
-          <div></div>
-          <div class="board-col">Jake</div>
-          <div class="board-col">Ty</div>
-          <div class="board-col">Sam</div>
-          <div class="board-col">Alex</div>
-        </div>
-
-        <div class="board-row" aria-hidden="true">
-          <div class="board-rd">R1</div>
-          <div class="pick" style="animation-delay:.10s"><span class="n">1.01</span><span class="nm">1-seed G</span>
-          </div>
-          <div class="pick" style="animation-delay:.22s"><span class="n">1.02</span><span class="nm">1-seed F</span>
-          </div>
-          <div class="pick" style="animation-delay:.34s"><span class="n">1.03</span><span class="nm">2-seed G</span>
-          </div>
-          <div class="pick" style="animation-delay:.46s"><span class="n">1.04</span><span class="nm">1-seed C</span>
-          </div>
-        </div>
-
-        <div class="board-row" aria-hidden="true">
-          <div class="board-rd">R2</div>
-          <div class="pick live" style="animation-delay:1.06s"><span class="n">2.08</span><span class="nm">On the
-              clock</span></div>
-          <div class="pick" style="animation-delay:.94s"><span class="n">2.07</span><span class="nm">3-seed G</span>
-          </div>
-          <div class="pick" style="animation-delay:.82s"><span class="n">2.06</span><span class="nm">2-seed F</span>
-          </div>
-          <div class="pick" style="animation-delay:.70s"><span class="n">2.05</span><span class="nm">2-seed C</span>
-          </div>
-        </div>
-
-        <div class="board-row" aria-hidden="true">
-          <div class="board-rd">R3</div>
-          <div class="pick" style="animation-delay:1.30s"><span class="n">3.09</span><span class="nm">—</span></div>
-          <div class="pick" style="animation-delay:1.42s"><span class="n">3.10</span><span class="nm">—</span></div>
-          <div class="pick" style="animation-delay:1.54s"><span class="n">3.11</span><span class="nm">—</span></div>
-          <div class="pick" style="animation-delay:1.66s"><span class="n">3.12</span><span class="nm">—</span></div>
-        </div>
-
-        <div class="board-foot">
-          <span class="snake-arrow" aria-hidden="true">↳</span>
-          <span>Pick order reverses every round. Pick last in round one, <b>pick first in round two.</b></span>
-        </div>
-      </div>
-    </div>
-  </header>
-
   <main id="main">
+    <section class="section" id="inside">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Inside the app</span>
+          <h2 class="display">Everything the league needs, in one place.</h2>
+        </div>
+
+        <div class="features">
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">⏱</div>
+            <h3>Draft room</h3>
+            <p>A live board with the pick clock, who's on the clock, recent picks, and undo for when
+              somebody fat-fingers the wrong guard.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">▦</div>
+            <h3>Player pool</h3>
+            <p>The full field with points, rebounds, assists, steals and blocks. Filter by position or
+              seed, switch between list and card view, sort by best available.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">◈</div>
+            <h3>Teams &amp; rosters</h3>
+            <p>See every manager's roster at a glance, so you know exactly who took the sleeper you
+              were sitting on.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">▲</div>
+            <h3>Standings</h3>
+            <p>Ranked totals with a category breakdown, plus points remaining — the maximum you can
+              still score if every team you own wins out.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">⌇</div>
+            <h3>Bracket view</h3>
+            <p>The full bracket for whichever tournament you picked, with your drafted players marked
+              so you can watch your season end in real time.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">✉</div>
+            <h3>League chat</h3>
+            <p>Trash talk stays in the app instead of getting buried in a group text about somebody's
+              weekend plans.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">◫</div>
+            <h3>Latest updates</h3>
+            <p>A college basketball news feed inside the app, filtered to the teams in your tournament
+              so you catch an injury before you draft the guy.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">◷</div>
+            <h3>Scheduled drafts</h3>
+            <p>Set a date and time and every manager sees the same countdown on their home screen.
+              No group text trying to pin down a Tuesday.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">⚙</div>
+            <h3>Custom scoring</h3>
+            <p>Turn categories on or off and set your own weights. Run it straight, or make blocks
+              worth triple and watch the draft strategy change.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">◔</div>
+            <h3>Pick timer &amp; alerts</h3>
+            <p>Set the clock to whatever your league can tolerate. Turn on browser notifications and
+              get pinged when it's your turn, even with the app closed.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">⌂</div>
+            <h3>Installs like an app</h3>
+            <p>Add it to your home screen from the browser. Full screen, its own icon, no app store
+              and no update prompts.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-icon" aria-hidden="true">⇄</div>
+            <h3>Autopick &amp; skip</h3>
+            <p>Somebody late to the draft? Autopick takes the best available on their behalf, or skip
+              them and come back around.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
     <div class="wrap">
       <div class="wrap">
