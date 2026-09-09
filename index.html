@@ -3,6 +3,22 @@
 
 <head>
   <meta charset="UTF-8" />
+  <script>
+    /* Clear the old app service worker + caches left over from when the app
+       was served at tipofffantasy.com. Without this, that worker keeps
+       serving the cached app shell instead of this site. */
+    (function () {
+      if (!('serviceWorker' in navigator)) return;
+      navigator.serviceWorker.getRegistrations()
+        .then(function (regs) { regs.forEach(function (r) { r.unregister(); }); })
+        .catch(function () {});
+      if (window.caches && caches.keys) {
+        caches.keys()
+          .then(function (keys) { keys.forEach(function (k) { caches.delete(k); }); })
+          .catch(function () {});
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Tipoff Fantasy — Snake-draft fantasy for college basketball tournaments</title>
   <meta name="description" content="Tipoff Fantasy is a snake draft fantasy game for college basketball tournaments. Draft individual players, not brackets. Score every game until your roster is eliminated." />

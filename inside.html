@@ -3,6 +3,21 @@
 
 <head>
   <meta charset="UTF-8" />
+  <script>
+    /* Clear the old app service worker + caches left over from when the app
+       was served at tipofffantasy.com. */
+    (function () {
+      if (!('serviceWorker' in navigator)) return;
+      navigator.serviceWorker.getRegistrations()
+        .then(function (regs) { regs.forEach(function (r) { r.unregister(); }); })
+        .catch(function () {});
+      if (window.caches && caches.keys) {
+        caches.keys()
+          .then(function (keys) { keys.forEach(function (k) { caches.delete(k); }); })
+          .catch(function () {});
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Inside the Tipoff Fantasy app — Every feature</title>
   <meta name="description" content="Draft room, player pool, standings, bracket view, league chat, news feed, scheduled drafts and custom scoring." />
