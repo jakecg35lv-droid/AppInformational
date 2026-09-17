@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    /* Clear the old app service worker + caches left over from when the app
+       was served at tipofffantasy.com. */
+    (function () {
+      if (!('serviceWorker' in navigator)) return;
+      navigator.serviceWorker.getRegistrations()
+        .then(function (regs) { regs.forEach(function (r) { r.unregister(); }); })
+        .catch(function () {});
+      if (window.caches && caches.keys) {
+        caches.keys()
+          .then(function (keys) { keys.forEach(function (k) { caches.delete(k); }); })
+          .catch(function () {});
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Updates — What's new in Tipoff Fantasy</title>
+  <meta name="description" content="Everything we've shipped, newest first. Roster rules, live scoring, account controls and more." />
+  <meta name="theme-color" content="#060f1c" />
+  <link rel="canonical" href="https://tipofffantasy.com/updates.html" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <meta property="og:title" content="Updates — What's new in Tipoff Fantasy" />
+  <meta property="og:description" content="Everything we've shipped, newest first." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tipofffantasy.com/updates.html" />
+  <meta property="og:image" content="https://tipofffantasy.com/logo-icon.png" />
+  <meta property="og:site_name" content="Tipoff Fantasy" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Updates — What's new in Tipoff Fantasy" />
+  <meta name="twitter:description" content="Everything we've shipped, newest first." />
+  <meta name="twitter:image" content="https://tipofffantasy.com/logo-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bebas+Neue&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ── Changelog timeline ──────────────────────────────── */
+    .log { max-width: 760px; margin-top: 8px; }
+
+    .log-entry {
+      position: relative;
+      padding: 0 0 38px 30px;
+      border-left: 2px solid var(--border);
+    }
+    .log-entry:last-child { border-left-color: transparent; padding-bottom: 8px; }
+
+    /* Dot on the timeline */
+    .log-entry::before {
+      content: '';
+      position: absolute;
+      left: -7px; top: 4px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--panel-solid);
+      border: 2px solid var(--border-2);
+    }
+    .log-entry--latest::before {
+      background: var(--orange);
+      border-color: var(--orange);
+      box-shadow: 0 0 0 5px rgba(242, 107, 33, 0.16);
+    }
+
+    .log-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .log-tag {
+      font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.1em;
+      padding: 3px 8px; border-radius: 99px;
+      background: rgba(242, 107, 33, 0.14);
+      border: 1px solid var(--border-accent);
+      color: var(--orange);
+    }
+
+    .log-title {
+      font-size: 21px; font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin: 0 0 10px;
+      line-height: 1.25;
+    }
+    .log-body { color: var(--text-2); line-height: 1.7; margin: 0 0 14px; }
+    .log-list { margin: 0; padding-left: 18px; }
+    .log-list li {
+      color: var(--text-2); line-height: 1.65;
+      margin-bottom: 7px;
+    }
+    .log-list li strong { color: var(--text); font-weight: 700; }
+
+    .log-note {
+      margin-top: 30px; padding: 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--grad-card);
+    }
+    .log-note p { margin: 0; font-size: 14.5px; }
+
+    @media (max-width: 560px) {
+      .log-entry { padding-left: 22px; padding-bottom: 32px; }
+      .log-title { font-size: 19px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="nav-brand" href="index.html" aria-label="Tipoff Fantasy home">
+        <img src="logo-icon.png" alt="" width="34" height="34" />
+        <span class="nav-brand-text"><strong>TIPOFF</strong><small>FANTASY</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="why.html">Why it exists</a>
+        <a href="how.html">How it works</a>
+        <a href="inside.html">Inside the app</a>
+        <a href="scoring.html">Scoring</a>
+        <a href="faq.html">FAQ</a>
+        <a href="updates.html" class="active">Updates</a>
+      </div>
+      <a class="btn btn-primary btn-sm" href="https://app.tipofffantasy.com/">Open the app</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Updates</span>
+          <h2 class="display">What we've shipped</h2>
+          <p class="lede" style="margin-top:14px;">
+            Tipoff Fantasy is being built in the open ahead of the 2026-27 season.
+            Newest first.
+          </p>
+        </div>
+
+        <div class="log">
+
+          <!-- ══ SEPTEMBER 2026 ══ -->
+          <article class="log-entry log-entry--latest">
+            <div class="log-date">
+              September 2026
+              <span class="log-tag">Latest</span>
+            </div>
+            <h3 class="log-title">Roster rules and a draft that protects itself</h3>
+            <p class="log-body">
+              Drafting eight of the highest-scoring players available was never much of a
+              decision. Now every roster has to hold a real shape, and the draft room looks
+              out for you when you are not looking at it.
+            </p>
+            <ul class="log-list">
+              <li><strong>Position requirements.</strong> Every roster needs at least one guard, one forward and one center. Five of your eight picks stay completely free, and a player only locks when taking him would make a legal roster impossible.</li>
+              <li><strong>Smarter autopick.</strong> If your timer runs out, the pick made for you can no longer leave you with an illegal roster.</li>
+              <li><strong>Short-handed draft warning.</strong> Starting a draft before the league fills now tells the commissioner exactly how many seats are still empty.</li>
+              <li><strong>Commissioner-only league rules.</strong> Scoring weights and the pick timer can only be changed by the commissioner, and every change is written to the league activity feed.</li>
+            </ul>
+          </article>
+
+          <article class="log-entry">
+            <div class="log-date">September 2026</div>
+            <h3 class="log-title">Your account, your leagues, your alerts</h3>
+            <ul class="log-list">
+              <li><strong>Account controls.</strong> Change your email, change your password, or delete your account outright from Settings.</li>
+              <li><strong>My Leagues.</strong> Every league you have joined lives in one list. Switch between them in a tap.</li>
+              <li><strong>Notifications you choose.</strong> Six separate alerts instead of one switch: draft starting soon, a pick made, your player scoring, your team eliminated, a standings change, a new manager joining.</li>
+              <li><strong>Your color.</strong> Pick an accent that marks your picks and your standings row, so you can find yourself at a glance.</li>
+              <li><strong>A privacy policy worth reading.</strong> Plain language on what we collect, what we never collect, and how to delete it.</li>
+            </ul>
+          </article>
+
+          <article class="log-entry">
+            <div class="log-date">September 2026</div>
+            <h3 class="log-title">Live stat pipeline</h3>
+            <p class="log-body">
+              The machinery that turns real box scores into fantasy points. It polls only
+              while tournaments are actually being played, so it is not burning through data
+              in July.
+            </p>
+          </article>
+
+          <!-- ══ EARLIER ══ -->
+          <article class="log-entry">
+            <div class="log-date">Summer 2026</div>
+            <h3 class="log-title">Tournaments, brackets and scoring you control</h3>
+            <ul class="log-list">
+              <li><strong>Pick your tournament.</strong> Maui Invitational, Battle 4 Atlantis and more, each with its own field and bracket.</li>
+              <li><strong>Live bracket.</strong> See who is still alive, and which of your players are still earning.</li>
+              <li><strong>Custom scoring.</strong> Five categories, weights your commissioner sets, any of them switchable off. A league that only counts rebounds and blocks is a completely different draft.</li>
+              <li><strong>Latest Updates feed.</strong> College basketball news inside the app.</li>
+              <li><strong>Install it like an app.</strong> Add Tipoff to your home screen and it opens full screen, works offline, and can alert you when you are on the clock.</li>
+            </ul>
+          </article>
+
+        </div>
+
+        <div class="log-note">
+          <p>
+            Building toward the Maui Invitational, November 23, 2026.
+            <a href="https://app.tipofffantasy.com/">Open the app</a> to try what is here now.
+          </p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot-inner">
+      <div>
+        <div class="foot-brand">
+          <img src="logo-icon.png" alt="" width="28" height="28" />
+          <span class="foot-brand-text"><strong>TIPOFF</strong><small>FANTASY</small></span>
+        </div>
+        <p class="foot-legal" style="margin-top:12px;">
+          Tipoff Fantasy is an independent fantasy game and is not affiliated with, endorsed by, or
+          sponsored by the NCAA or any college, conference, or athletic association. All team and
+          player names are the property of their respective owners.
+        </p>
+      </div>
+      <div class="foot-right">
+        <div class="foot-links">
+          <a href="how.html">How it works</a>
+          <a href="scoring.html">Scoring</a>
+          <a href="faq.html">FAQ</a>
+          <a href="updates.html">Updates</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="https://app.tipofffantasy.com/">Open the app</a>
+        </div>
+        <div class="foot-socials">
+          <a class="foot-social" href="https://x.com/tipofffantasy" target="_blank" rel="noopener noreferrer" aria-label="Tipoff Fantasy on X">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a class="foot-social" href="https://www.instagram.com/playtipoff/" target="_blank" rel="noopener noreferrer" aria-label="Tipoff Fantasy on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a class="foot-social" href="https://www.tiktok.com/@tipofffantasy" target="_blank" rel="noopener noreferrer" aria-label="Tipoff Fantasy on TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06V9.68a5.67 5.67 0 0 0-.77-.05A5.66 5.66 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
