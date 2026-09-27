@@ -18,6 +18,12 @@
       }
     })();
   </script>
+  <script>
+    /* Mark the document JS-capable before first paint. Reveal styles are
+       scoped to html.js, so a JS failure renders the page fully visible
+       rather than blank. Fail open, never closed. */
+    document.documentElement.className += ' js';
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Tipoff Fantasy scoring — Five categories, your weights</title>
   <meta name="description" content="Points, rebounds, assists, steals and blocks convert to fantasy points using weights your commissioner controls." />
@@ -75,7 +81,7 @@
   <main id="main">
     <section class="section" id="scoring">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head reveal">
           <span class="eyebrow">Scoring</span>
           <h2 class="display">Five categories. Your weights.</h2>
         </div>
@@ -124,16 +130,14 @@
     </section>
 
     <section class="section">
-    <div class="wrap">
       <div class="wrap">
-        <div class="cta">
+        <div class="cta reveal">
           <h2 class="display">Get your league drafting.</h2>
           <p>Create a league, send one link, and have a full snake draft running tonight.</p>
           <a class="btn btn-primary" href="https://app.tipofffantasy.com/">Open the app</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   </main>
 
   <footer>
@@ -172,6 +176,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="site.js" defer></script>
 
 </body>
 

@@ -18,6 +18,12 @@
       }
     })();
   </script>
+  <script>
+    /* Mark the document JS-capable before first paint. Reveal styles are
+       scoped to html.js, so a JS failure renders the page fully visible
+       rather than blank. Fail open, never closed. */
+    document.documentElement.className += ' js';
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>How Tipoff Fantasy works — Five steps, start to trophy</title>
   <meta name="description" content="Create a league, invite your managers, pick a tournament, snake draft, and watch the standings move through the final." />
@@ -75,14 +81,14 @@
   <main id="main">
     <section class="section" id="how">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head reveal">
           <span class="eyebrow">How it works</span>
           <h2 class="display">Five steps, start to trophy.</h2>
           <p class="lede">The whole thing takes about twenty minutes to set up and one evening to draft.</p>
         </div>
 
         <div class="steps">
-          <div class="step">
+          <div class="step reveal" data-reveal-delay="0">
             <div class="step-n">01</div>
             <div>
               <h3>Create the league</h3>
@@ -94,7 +100,7 @@
             </div>
           </div>
 
-          <div class="step">
+          <div class="step reveal" data-reveal-delay="90">
             <div class="step-n">02</div>
             <div>
               <h3>Everyone joins</h3>
@@ -106,7 +112,7 @@
             </div>
           </div>
 
-          <div class="step">
+          <div class="step reveal" data-reveal-delay="180">
             <div class="step-n">03</div>
             <div>
               <h3>Choose the tournament</h3>
@@ -119,7 +125,7 @@
             </div>
           </div>
 
-          <div class="step">
+          <div class="step reveal" data-reveal-delay="270">
             <div class="step-n">04</div>
             <div>
               <h3>Snake draft</h3>
@@ -132,7 +138,7 @@
             </div>
           </div>
 
-          <div class="step">
+          <div class="step reveal" data-reveal-delay="360">
             <div class="step-n">05</div>
             <div>
               <h3>Watch the standings move</h3>
@@ -148,16 +154,14 @@
     </section>
 
     <section class="section">
-    <div class="wrap">
       <div class="wrap">
-        <div class="cta">
+        <div class="cta reveal">
           <h2 class="display">Get your league drafting.</h2>
           <p>Create a league, send one link, and have a full snake draft running tonight.</p>
           <a class="btn btn-primary" href="https://app.tipofffantasy.com/">Open the app</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   </main>
 
   <footer>
@@ -196,6 +200,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="site.js" defer></script>
 
 </body>
 

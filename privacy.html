@@ -18,6 +18,12 @@
       }
     })();
   </script>
+  <script>
+    /* Mark the document JS-capable before first paint. Reveal styles are
+       scoped to html.js, so a JS failure renders the page fully visible
+       rather than blank. Fail open, never closed. */
+    document.documentElement.className += ' js';
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Privacy Policy — Tipoff Fantasy</title>
   <meta name="description" content="What Tipoff Fantasy collects, why we collect it, how long we keep it, and how to delete it." />
@@ -93,7 +99,7 @@
   <main id="main">
     <section class="section">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head reveal">
           <span class="eyebrow">Legal</span>
           <h2 class="display">Privacy Policy</h2>
         </div>
@@ -271,6 +277,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="site.js" defer></script>
 
 </body>
 

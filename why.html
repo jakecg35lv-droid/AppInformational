@@ -18,6 +18,12 @@
       }
     })();
   </script>
+  <script>
+    /* Mark the document JS-capable before first paint. Reveal styles are
+       scoped to html.js, so a JS failure renders the page fully visible
+       rather than blank. Fail open, never closed. */
+    document.documentElement.className += ' js';
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Why Tipoff Fantasy exists — Draft players, not brackets</title>
   <meta name="description" content="Your bracket dies on day one. Tipoff Fantasy is a real snake draft for the tournament, with a roster that keeps scoring." />
@@ -75,7 +81,7 @@
   <main id="main">
     <section class="section" id="why">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head reveal">
           <span class="eyebrow">Why it exists</span>
           <h2 class="display">Your bracket dies on day one.</h2>
           <p class="lede">
@@ -113,16 +119,14 @@
     </section>
 
     <section class="section">
-    <div class="wrap">
       <div class="wrap">
-        <div class="cta">
+        <div class="cta reveal">
           <h2 class="display">Get your league drafting.</h2>
           <p>Create a league, send one link, and have a full snake draft running tonight.</p>
           <a class="btn btn-primary" href="https://app.tipofffantasy.com/">Open the app</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   </main>
 
   <footer>
@@ -161,6 +165,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="site.js" defer></script>
 
 </body>
 

@@ -19,6 +19,13 @@
       }
     })();
   </script>
+  <script>
+    /* Mark the document as JS-capable BEFORE first paint. The reveal
+       styles only hide content under html.js, so if this script or the
+       observer below ever fails the page renders fully visible instead
+       of blank. Fail open, never closed. */
+    document.documentElement.className += ' js';
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Tipoff Fantasy — Snake-draft fantasy for college basketball tournaments</title>
   <meta name="description" content="Tipoff Fantasy is a snake draft fantasy game for college basketball tournaments. Draft individual players, not brackets. Score every game until your roster is eliminated." />
@@ -148,18 +155,151 @@
     </div>
   </header>
 
+  <!-- Team ticker: every school currently in the player pool. Real
+       data, so it stays honest as the field changes. -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Arizona</span><span>BYU</span><span>Clemson</span><span>Colorado State</span><span>Ole Miss</span><span>Providence</span><span>VCU</span><span>Washington</span><span>Marquette</span><span>Penn State</span><span>Texas A&amp;M</span><span>Memphis</span><span>Mississippi State</span><span>Virginia</span><span>Wake Forest</span><span>Xavier</span><span>Akron</span><span>Wright State</span><span>App State</span><span>Belmont</span>
+      <span>Arizona</span><span>BYU</span><span>Clemson</span><span>Colorado State</span><span>Ole Miss</span><span>Providence</span><span>VCU</span><span>Washington</span><span>Marquette</span><span>Penn State</span><span>Texas A&amp;M</span><span>Memphis</span><span>Mississippi State</span><span>Virginia</span><span>Wake Forest</span><span>Xavier</span><span>Akron</span><span>Wright State</span><span>App State</span><span>Belmont</span>
+    </div>
+  </div>
+
   <main id="main">
+
+    <!-- ══ THREE STEPS ══════════════════════════════════════ -->
     <section class="section">
-    <div class="wrap">
       <div class="wrap">
-        <div class="cta">
+        <div class="section-head reveal">
+          <span class="eyebrow">How it works</span>
+          <h2 class="display">Three steps. One night.</h2>
+        </div>
+
+        <div class="hiw-steps">
+          <article class="hiw-step reveal" data-reveal-delay="0">
+            <span class="hiw-num">01</span>
+            <h3>Create a league</h3>
+            <p>Pick a tournament, set your scoring weights and pick timer, then send one link. Your friends are in with a six-character code.</p>
+          </article>
+          <article class="hiw-step reveal" data-reveal-delay="100">
+            <span class="hiw-num">02</span>
+            <h3>Snake draft</h3>
+            <p>Take turns picking individual players. Pick last in round one and you pick first in round two. Every roster needs a guard, a forward and a center.</p>
+          </article>
+          <article class="hiw-step reveal" data-reveal-delay="200">
+            <span class="hiw-num">03</span>
+            <h3>Watch it score</h3>
+            <p>Real box scores update your standings while the games are on. Your players keep earning until their team goes home.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SCOREBOARD MOMENT ════════════════════════════════ -->
+    <section class="section section--tint">
+      <div class="wrap">
+        <div class="split">
+          <div class="reveal">
+            <span class="eyebrow">Live scoring</span>
+            <h2 class="display">Your roster is<br />always on.</h2>
+            <p class="lede">
+              Points, rebounds, assists, steals and blocks convert to fantasy points using
+              weights your commissioner controls. Scores move while the game is being played,
+              not the next morning.
+            </p>
+            <div class="formula formula--lg">
+              FPTS = (PTS × <b>1.0</b>) + (REB × <b>1.2</b>) + (AST × <b>1.5</b>) + (STL × <b>2.0</b>) + (BLK × <b>2.0</b>)
+            </div>
+            <a class="btn btn-ghost" href="scoring.html">How scoring works</a>
+          </div>
+
+          <!-- Mock live scoreboard, matching the real app's strip -->
+          <div class="scoreboard reveal" data-reveal-delay="120" role="img"
+            aria-label="Illustration of a live scoreboard showing an in-progress game and a final">
+            <div class="sb-card sb-card--live">
+              <div class="sb-status"><i class="dot" aria-hidden="true"></i>4:12 · 2nd</div>
+              <div class="sb-team"><span>Arizona</span><b>68</b></div>
+              <div class="sb-team"><span>Washington</span><b>64</b></div>
+            </div>
+            <div class="sb-card">
+              <div class="sb-status">Final</div>
+              <div class="sb-team sb-team--won"><span>Ole Miss</span><b>70</b></div>
+              <div class="sb-team sb-team--lost"><span>Colorado State</span><b>65</b></div>
+            </div>
+            <div class="sb-line reveal" data-reveal-delay="240">
+              <span class="sb-line-name">Your roster</span>
+              <span class="sb-line-pts" data-count-to="147">0</span>
+              <span class="sb-line-lbl">FPTS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BY THE NUMBERS ═══════════════════════════════════ -->
+    <section class="section">
+      <div class="wrap">
+        <div class="stats">
+          <div class="stat reveal" data-reveal-delay="0">
+            <span class="stat-num" data-count-to="239">0</span>
+            <span class="stat-lbl">Draftable players</span>
+          </div>
+          <div class="stat reveal" data-reveal-delay="80">
+            <span class="stat-num" data-count-to="20">0</span>
+            <span class="stat-lbl">Schools</span>
+          </div>
+          <div class="stat reveal" data-reveal-delay="160">
+            <span class="stat-num" data-count-to="5">0</span>
+            <span class="stat-lbl">Scoring categories</span>
+          </div>
+          <div class="stat reveal" data-reveal-delay="240">
+            <span class="stat-num">$0</span>
+            <span class="stat-lbl">To play. Always.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ TOURNAMENTS ══════════════════════════════════════ -->
+    <section class="section section--tint">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Opening night</span>
+          <h2 class="display">Three fields, ready to draft.</h2>
+        </div>
+
+        <div class="tourneys">
+          <article class="tourney reveal" data-reveal-delay="0">
+            <span class="tourney-date">Nov 23–25, 2026</span>
+            <h3>Maui Invitational</h3>
+            <p>Arizona · BYU · Clemson · Colorado State · Ole Miss · Providence · VCU · Washington</p>
+            <span class="tourney-meta">8 teams · 95 players</span>
+          </article>
+          <article class="tourney reveal" data-reveal-delay="110">
+            <span class="tourney-date">Nov 25–27, 2026</span>
+            <h3>Battle 4 Atlantis</h3>
+            <p>Marquette · Penn State · Texas A&amp;M · Memphis · Mississippi State · Virginia · Wake Forest · Xavier</p>
+            <span class="tourney-meta">8 teams · 96 players</span>
+          </article>
+          <article class="tourney reveal" data-reveal-delay="220">
+            <span class="tourney-date">Nov 23–25, 2026</span>
+            <h3>ESPN Thanksgiving Showcase</h3>
+            <p>Akron · Wright State · App State · Belmont</p>
+            <span class="tourney-meta">4 teams · 48 players</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CTA ══════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="wrap">
+        <div class="cta reveal">
           <h2 class="display">Get your league drafting.</h2>
           <p>Create a league, send one link, and have a full snake draft running tonight.</p>
           <a class="btn btn-primary" href="https://app.tipofffantasy.com/">Open the app</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   </main>
 
   <footer>
@@ -198,6 +338,8 @@
       </div>
     </div>
   </footer>
+
+<script src="site.js" defer></script>
 
 </body>
 
