@@ -21,6 +21,58 @@
     else document.addEventListener('DOMContentLoaded', fn);
   }
 
+  /* ── Mobile menu ──────────────────────────────────────
+     Below 700px the nav links are hidden by CSS. Without this the
+     rest of the site is unreachable from a phone. */
+  ready(function () {
+    var toggle = document.getElementById('navToggle');
+    var menu = document.getElementById('mobileMenu');
+    if (!toggle || !menu) return;
+
+    function open() {
+      menu.hidden = false;
+      // Next frame, so the transition has a start state to animate from.
+      requestAnimationFrame(function () { menu.classList.add('open'); });
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+      document.body.classList.add('menu-open');
+    }
+
+    function close() {
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      document.body.classList.remove('menu-open');
+      // Wait for the fade before hiding, or it snaps shut.
+      setTimeout(function () {
+        if (toggle.getAttribute('aria-expanded') === 'false') menu.hidden = true;
+      }, 260);
+    }
+
+    toggle.addEventListener('click', function () {
+      if (toggle.getAttribute('aria-expanded') === 'true') close(); else open();
+    });
+
+    // Tapping a link navigates; close first so a back-button return
+    // does not land on an open menu.
+    menu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') close();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        close();
+        toggle.focus();
+      }
+    });
+
+    // Rotating to landscape can cross the 700px breakpoint and leave a
+    // menu open over a nav that is visible again.
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 700 && toggle.getAttribute('aria-expanded') === 'true') close();
+    });
+  });
+
   ready(function () {
     var items = [].slice.call(document.querySelectorAll('.reveal'));
 
