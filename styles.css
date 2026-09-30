@@ -1145,10 +1145,14 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* ── Three steps ─────────────────────────────────────── */
+    /* ── How it works steps ──────────────────────────────── */
+    /*  Was a hard repeat(3, 1fr). Adding the season step made a
+        fourth card, which wrapped alone onto a second row and looked
+        like a mistake. auto-fit lets the count change without the
+        grid needing to be edited again. */
     .hiw-steps {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 20px;
       margin-top: 34px;
     }
