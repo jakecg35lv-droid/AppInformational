@@ -1468,3 +1468,34 @@
       .pick .nm { font-size: 8.5px; }
       .hero h1 { font-size: 32px; }
     }
+
+/* ══════════════════════════════════════════════════════════
+   MOBILE OVERFLOW FIX — .formula
+   Measured at 375px: index.html and scoring.html both scrolled
+   sideways by ~205px. Every other page was clean.
+
+   Cause: .formula is one long `white-space: nowrap` line (~565px).
+   It has overflow-x:auto, which should have contained it — but a
+   grid/flex child defaults to `min-width: auto`, meaning it refuses
+   to shrink below its content. So instead of scrolling inside its
+   own box it inflated a 339px column to 565px and dragged the whole
+   page with it. The nowrap never had a chance to be contained.
+══════════════════════════════════════════════════════════ */
+
+/* Let the containers shrink, so overflow-x actually applies. */
+.split > *,
+.scoring-wrap > *,
+.formula { min-width: 0; max-width: 100%; }
+
+@media (max-width: 700px) {
+  /*  On a phone, wrap the formula instead of scrolling it. A
+      sideways-scrolling equation is a worse read than a three-line
+      one, and it hides half the scoring rule by default. */
+  .formula,
+  .formula--lg {
+    white-space: normal;
+    overflow-x: visible;
+    overflow-wrap: anywhere;
+    line-height: 2;
+  }
+}
