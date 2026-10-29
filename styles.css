@@ -1499,3 +1499,37 @@
     line-height: 2;
   }
 }
+
+/* Preview caveat under the season section. Quiet on purpose: it is a
+   qualifier, not a feature, but it must be readable rather than
+   hidden in a footnote. */
+.note {
+  max-width: 620px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid var(--border-accent, rgba(242, 107, 33, 0.3));
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+@media (max-width: 480px) {
+  .note { font-size: 13.5px; padding: 12px 14px; }
+}
+
+/* "Preview" chip beside a feature that is built but not yet proven
+   against live data. Deliberately legible rather than decorative. */
+.feat-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+  color: var(--orange, #f26b21);
+  background: rgba(242, 107, 33, 0.12);
+  border: 1px solid rgba(242, 107, 33, 0.3);
+}
