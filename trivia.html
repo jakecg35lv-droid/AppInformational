@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    /* Clear the old app service worker + caches left over from when the app
+       was served at tipofffantasy.com. */
+    (function () {
+      if (!('serviceWorker' in navigator)) return;
+      navigator.serviceWorker.getRegistrations()
+        .then(function (regs) { regs.forEach(function (r) { r.unregister(); }); })
+        .catch(function () {});
+      if (window.caches && caches.keys) {
+        caches.keys()
+          .then(function (keys) { keys.forEach(function (k) { caches.delete(k); }); })
+          .catch(function () {});
+      }
+    })();
+  </script>
+  <script>
+    /* Mark the document JS-capable before first paint. Reveal styles are
+       scoped to html.js, so a JS failure renders the page fully visible
+       rather than blank. Fail open, never closed. */
+    document.documentElement.className += ' js';
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tipoff Trivia — College basketball trivia that rewards the deep cuts</title>
+  <meta name="description" content="Seven prompts, a 25-second shot clock, and the more obscure your answer, the more it's worth. A new Daily every day from the makers of Tipoff Fantasy." />
+  <meta name="theme-color" content="#060f1c" />
+  <link rel="canonical" href="https://tipofffantasy.com/trivia.html" />
+
+  <!-- Favicons MUST be served from this same host or Google shows a globe -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <meta property="og:title" content="Tipoff Trivia — College basketball trivia that rewards the deep cuts" />
+  <meta property="og:description" content="Seven prompts, a 25-second shot clock, and the more obscure your answer, the more it's worth. A new Daily every day from the makers of Tipoff Fantasy." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tipofffantasy.com/trivia.html" />
+  <meta property="og:image" content="https://tipofffantasy.com/logo-icon.png" />
+  <meta property="og:image:alt" content="Tipoff Fantasy logo" />
+  <meta property="og:site_name" content="Tipoff Fantasy" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tipoff Trivia — College basketball trivia that rewards the deep cuts" />
+  <meta name="twitter:description" content="Seven prompts, a 25-second shot clock, and the more obscure your answer, the more it's worth. A new Daily every day from the makers of Tipoff Fantasy." />
+  <meta name="twitter:image" content="https://tipofffantasy.com/logo-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bebas+Neue&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="nav-brand" href="index.html" aria-label="Tipoff Fantasy home">
+        <img src="logo-icon.png" alt="" width="34" height="34" />
+        <span class="nav-brand-text"><strong>TIPOFF</strong><small>FANTASY</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="why.html">Why it exists</a>
+        <a href="how.html">How it works</a>
+        <a href="inside.html">Inside the app</a>
+        <a href="scoring.html">Scoring</a>
+        <a href="trivia.html" class="active">Trivia<span class="nav-new" aria-hidden="true"></span></a>
+        <a href="faq.html">FAQ</a>
+        <a href="updates.html">Updates</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu"
+        aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+      <a class="btn btn-primary btn-sm" href="https://app.tipofffantasy.com/">Open the app</a>
+    </div>
+  </nav>
+
+  <!-- Mobile menu. Below 700px the nav links are hidden and this panel
+       is the only way to reach the rest of the site. -->
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <div class="mm-inner">
+      <a href="index.html">Home</a>
+      <a href="why.html">Why it exists</a>
+      <a href="how.html">How it works</a>
+      <a href="inside.html">Inside the app</a>
+      <a href="scoring.html">Scoring</a>
+      <a href="trivia.html">Trivia</a>
+      <a href="faq.html">FAQ</a>
+      <a href="updates.html">Updates</a>
+      <a href="privacy.html">Privacy</a>
+      <a class="btn btn-primary mm-cta" href="https://app.tipofffantasy.com/">Open the app</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ══ HERO ══════════════════════════════════════════════
+         Tipoff Trivia lives at trivia.tipofffantasy.com. This page
+         sells it to people who already know Tipoff Fantasy, and
+         sends them straight to today's daily game.
+    ══════════════════════════════════════════════════════════ -->
+    <header class="hero trv-hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">New · Tipoff Trivia</span>
+          <h1 class="trv-h1">Anyone can name Duke.<br /><em>Go deeper.</em></h1>
+          <p class="hero-tag">Know ball. Go deep.</p>
+          <p>
+            The college basketball trivia game that rewards the deep cuts. Seven prompts,
+            a 25-second shot clock, and the more obscure your answer, the deeper the shot
+            and the more it's worth.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://trivia.tipofffantasy.com/">Play today's game</a>
+            <a class="btn btn-ghost" href="#how">How it plays</a>
+          </div>
+          <p class="hero-note">A new Daily drops every day. Plays in your browser, nothing to install.</p>
+        </div>
+
+        <!-- SIGNATURE ELEMENT: the shot chart. Each ring is a scoring
+             zone; the farther out your answer lands, the more it's worth. -->
+        <figure class="court" role="img"
+          aria-label="Shot chart showing the five scoring zones: Layup 10, Mid-Range 30, Three Ball 60, Deep Cut 85 and Half Court 100">
+          <div class="court-head">
+            <span class="board-title">Shot chart · Scoring zones</span>
+            <span class="board-clock"><i class="dot" aria-hidden="true"></i>0:25</span>
+          </div>
+          <div class="court-floor" aria-hidden="true">
+            <span class="court-ring r5"></span>
+            <span class="court-ring r4"></span>
+            <span class="court-ring r3"></span>
+            <span class="court-ring r2"></span>
+            <span class="court-ring r1"></span>
+            <span class="court-lane"></span>
+            <span class="court-rim"></span>
+            <span class="court-zone z1">Layup · 10</span>
+            <span class="court-zone z2">Mid · 30</span>
+            <span class="court-zone z3">3PT · 60</span>
+            <span class="court-zone z4">Deep · 85</span>
+            <span class="court-zone z5">Half · 100</span>
+            <i class="court-shot s1"></i><i class="court-shot s2"></i><i class="court-shot s3"></i><i class="court-shot s4"></i>
+          </div>
+          <figcaption class="board-foot">
+            <span class="snake-arrow" aria-hidden="true">↳</span>
+            <span>Every prompt hides exactly <b>one Half Court answer</b> worth 100.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <!-- ══ NUMBERS ══════════════════════════════════════════ -->
+    <section class="section trv-tight">
+      <div class="wrap">
+        <div class="stats reveal">
+          <div class="stat"><span class="stat-num" data-count-to="7">7</span><span class="stat-lbl">Prompts a day</span></div>
+          <div class="stat"><span class="stat-num"><span data-count-to="25">25</span>s</span><span class="stat-lbl">Shot clock</span></div>
+          <div class="stat"><span class="stat-num" data-count-to="700">700</span><span class="stat-lbl">Max score</span></div>
+          <div class="stat"><span class="stat-num" data-count-to="1">1</span><span class="stat-lbl">Half Court per prompt</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ HOW IT PLAYS ═════════════════════════════════════ -->
+    <section class="section section--tint" id="how">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">How it plays</span>
+          <h2 class="display">Seven shots. Make them count.</h2>
+          <p class="lede">Every prompt has a lot of right answers. The question is how deep you're willing to go
+            before the shot clock runs out.</p>
+        </div>
+        <div class="hiw-steps">
+          <div class="hiw-step reveal" data-reveal-delay="0">
+            <span class="hiw-num">01</span>
+            <h3>Read the prompt</h3>
+            <p>Each one asks for a player, team or coach that fits. Plenty of answers work. Some are worth a lot more than others.</p>
+          </div>
+          <div class="hiw-step reveal" data-reveal-delay="90">
+            <span class="hiw-num">02</span>
+            <h3>Beat the shot clock</h3>
+            <p>You get 25 seconds per prompt. Type a name and fire before the buzzer, or the possession is gone.</p>
+          </div>
+          <div class="hiw-step reveal" data-reveal-delay="180">
+            <span class="hiw-num">03</span>
+            <h3>Go deep for points</h3>
+            <p>The answer everyone says is a layup for 10. The name only real fans remember is a deep cut for 85.</p>
+          </div>
+          <div class="hiw-step reveal" data-reveal-delay="270">
+            <span class="hiw-num">04</span>
+            <h3>Find the Half Court</h3>
+            <p>Every prompt hides one answer worth 100. Hit it on all seven and you post a perfect 700.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SCORING ZONES ════════════════════════════════════ -->
+    <section class="section" id="zones">
+      <div class="wrap scoring-wrap">
+        <div class="reveal">
+          <span class="eyebrow">Scoring</span>
+          <h2 class="display">The deeper the cut, the deeper the shot.</h2>
+          <p class="lede">Every correct answer lands in a zone based on how few people would think of it.
+            Popular answers still score, so you're never shut out. You just can't win the day on layups.</p>
+          <div class="formula formula--lg" style="margin-top:22px;">7 prompts × <b>100</b> = <b>700</b> max</div>
+        </div>
+        <div class="score-table reveal" data-reveal-delay="120">
+          <div class="score-row"><span class="score-name">Layup<small>The answer everyone says</small></span><span class="score-weight">10</span></div>
+          <div class="score-row"><span class="score-name">Mid-Range<small>Solid fan knowledge</small></span><span class="score-weight">30</span></div>
+          <div class="score-row"><span class="score-name">Three Ball<small>You watch a lot of hoops</small></span><span class="score-weight">60</span></div>
+          <div class="score-row"><span class="score-name">Deep Cut<small>Real sicko territory</small></span><span class="score-weight">85</span></div>
+          <div class="score-row trv-half"><span class="score-name">Half Court<small>One hidden answer per prompt</small></span><span class="score-weight">100</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ TWO WAYS TO PLAY ════════════════════════════════ -->
+    <section class="section section--tint" id="modes">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Two ways to play</span>
+          <h2 class="display">One shot a day. Or all the reps you want.</h2>
+        </div>
+        <div class="versus">
+          <div class="vs-card hot reveal">
+            <div class="vs-label">Daily Challenge</div>
+            <h3>Same seven for everybody</h3>
+            <p>A new set every day, and every player gets the same seven prompts.</p>
+            <ul class="vs-list">
+              <li>One attempt, so your score is your score</li>
+              <li>Two easy, three medium, two hard</li>
+              <li>Compare with your league chat before the first tip</li>
+              <li>Your record keeps every day you play</li>
+            </ul>
+          </div>
+          <div class="vs-card reveal" data-reveal-delay="110">
+            <div class="vs-label">Unlimited</div>
+            <h3>Practice mode</h3>
+            <p>Endless random games for when one Daily isn't enough.</p>
+            <ul class="vs-list">
+              <li>Pick your difficulty: Easy, Mixed, Medium or Hard</li>
+              <li>Run it back as often as you want</li>
+              <li>Sharpen up before tomorrow's Daily</li>
+              <li>Same shot clock, same scoring zones</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ TIE-IN ═══════════════════════════════════════════ -->
+    <section class="section" id="fantasy">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">From the makers of Tipoff Fantasy</span>
+          <h2 class="display">Know the deep cuts. Then draft them.</h2>
+          <p class="lede">The same people who sweat a 14th-round pick are the ones who know who started at
+            point guard for a 12-seed. Trivia is for the days between lock decisions.</p>
+        </div>
+        <div class="features">
+          <article class="feat reveal" data-reveal-delay="0">
+            <h3>Daily habit</h3>
+            <p>Seven prompts take about three minutes. Play it with your morning coffee, then check your lineup.</p>
+          </article>
+          <article class="feat reveal" data-reveal-delay="110">
+            <h3>Bragging rights</h3>
+            <p>Everyone gets the same Daily, so a 600 in your group chat means something. So does a 90.</p>
+          </article>
+          <article class="feat reveal" data-reveal-delay="220">
+            <h3>Fantasy edge</h3>
+            <p>The guy you learned about in Unlimited might be on your waiver wire next week.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CTA ══════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="wrap">
+        <div class="cta reveal">
+          <h2 class="display">Today's seven are live.</h2>
+          <p>Twenty-five seconds a prompt. One Half Court answer each. See how deep you can go.</p>
+          <div class="hero-actions" style="justify-content:center;">
+            <a class="btn btn-primary" href="https://trivia.tipofffantasy.com/">Play Tipoff Trivia</a>
+            <a class="btn btn-ghost" href="https://app.tipofffantasy.com/">Open Tipoff Fantasy</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot-inner">
+      <div>
+        <div class="foot-brand">
+          <img src="logo-icon.png" alt="" width="28" height="28" />
+          <span class="foot-brand-text"><strong>TIPOFF</strong><small>FANTASY</small></span>
+        </div>
+        <p class="foot-legal" style="margin-top:12px;">
+          Tipoff Fantasy is an independent fantasy game and is not affiliated with, endorsed by, or
+          sponsored by the NCAA or any college, conference, or athletic association. All team and
+          player names are the property of their respective owners.
+        </p>
+      </div>
+      <div class="foot-right">
+        <div class="foot-links">
+          <a href="how.html">How it works</a>
+          <a href="scoring.html">Scoring</a>
+          <a href="trivia.html">Trivia</a>
+          <a href="faq.html">FAQ</a>
+          <a href="updates.html">Updates</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="https://app.tipofffantasy.com/">Open the app</a>
+        </div>
+        <div class="foot-socials">
+          <a class="foot-social" href="https://x.com/tipofffantasy" target="_blank" rel="noopener noreferrer" aria-label="Tipoff Fantasy on X">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a class="foot-social" href="https://www.instagram.com/playtipoff/" target="_blank" rel="noopener noreferrer" aria-label="Tipoff Fantasy on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a class="foot-social" href="https://www.tiktok.com/@tipofffantasy" target="_blank" rel="noopener noreferrer" aria-label="Tipoff Fantasy on TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06V9.68a5.67 5.67 0 0 0-.77-.05A5.66 5.66 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="site.js" defer></script>
+
+</body>
+
+</html>

@@ -1533,3 +1533,150 @@
   background: rgba(242, 107, 33, 0.12);
   border: 1px solid rgba(242, 107, 33, 0.3);
 }
+
+/* ══════════════════════════════════════════════════════════
+   TIPOFF TRIVIA (trivia.html + homepage teaser)
+   The game lives at trivia.tipofffantasy.com; these pages sell it.
+══════════════════════════════════════════════════════════ */
+
+/* "New" dot on the Trivia nav link */
+.nav-new {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: var(--glow-orange);
+  vertical-align: 7px;
+}
+
+.trv-hero .eyebrow { margin-bottom: 18px; }
+.trv-hero h1.trv-h1 { font-size: clamp(46px, 7vw, 84px); margin-bottom: 14px; }
+.trv-tight { padding: 8px 0 72px; }
+.score-row.trv-half .score-name { color: var(--orange-light); }
+.score-row.trv-half .score-weight { background: var(--grad-primary); color: #fff; border-color: transparent; box-shadow: var(--glow); }
+
+/* ── Signature: the shot chart ────────────────────────── */
+.court {
+  background: var(--panel-solid);
+  background-image: var(--grad-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  overflow: hidden;
+  margin: 0;
+}
+.court-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.court-floor {
+  position: relative;
+  height: 330px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 0%, rgba(242, 107, 33, 0.10) 0%, transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0 26px, transparent 26px 52px),
+    #0a1626;
+  border: 1px solid var(--border);
+}
+/* Half-court line along the bottom */
+.court-floor::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 300px;
+  border-top: 2px solid rgba(242, 107, 33, 0.55);
+}
+.court-ring {
+  position: absolute;
+  left: 50%;
+  top: 34px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 1.5px dashed rgba(255, 255, 255, 0.16);
+}
+.court-ring.r1 { width: 144px; height: 144px; background: rgba(255, 255, 255, 0.025); }
+.court-ring.r2 { width: 264px; height: 264px; }
+.court-ring.r3 { width: 384px; height: 384px; border-style: solid; border-color: rgba(255, 255, 255, 0.32); }
+.court-ring.r4 { width: 504px; height: 504px; }
+.court-ring.r5 { display: none; }
+.court-lane {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 92px;
+  height: 104px;
+  transform: translateX(-50%);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  border-top: 0;
+  background: rgba(242, 107, 33, 0.06);
+}
+.court-rim {
+  position: absolute;
+  left: 50%;
+  top: 22px;
+  width: 22px;
+  height: 22px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 3px solid var(--orange);
+  box-shadow: var(--glow-orange);
+}
+.court-zone {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text);
+  background: rgba(6, 15, 28, 0.9);
+  border: 1px solid var(--border-2);
+  border-radius: 999px;
+  padding: 4px 11px;
+  z-index: 2;
+}
+.court-zone.z1 { top: 78px; }
+.court-zone.z2 { top: 136px; color: #7dd3fc; }
+.court-zone.z3 { top: 196px; color: var(--green); }
+.court-zone.z4 { top: 256px; color: #c4b5fd; }
+.court-zone.z5 { top: 300px; color: #fff; background: var(--grad-primary); border-color: transparent; box-shadow: var(--glow); }
+.court-shot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(6, 15, 28, 0.9);
+  z-index: 1;
+  opacity: 0;
+  animation: trv-shot .5s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+.court-shot.s1 { left: 30%; top: 56px;  background: var(--text-2); animation-delay: .3s; }
+.court-shot.s2 { left: 66%; top: 150px; background: #7dd3fc; animation-delay: .6s; }
+.court-shot.s3 { left: 22%; top: 214px; background: var(--green); animation-delay: .9s; }
+.court-shot.s4 { left: 74%; top: 268px; background: #c4b5fd; animation-delay: 1.2s; }
+@keyframes trv-shot {
+  from { opacity: 0; transform: scale(.2); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .court-shot { animation: none; opacity: 1; }
+}
+@media (max-width: 480px) {
+  .court { padding: 16px; }
+  .court-zone { font-size: 10px; padding: 3px 9px; }
+}
+
+/* ── Homepage teaser ─────────────────────────────────── */
+.trv-teaser .score-table { padding: 4px 20px 12px; }
+.trv-teaser .hero-actions { margin: 6px 0 0; }
