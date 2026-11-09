@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════
-   TIPOFF FANTASY — informational site
+   TIPOFF FANTASY: informational site
    SERVICE WORKER KILL SWITCH
 
    The app used to be served from tipofffantasy.com and registered a
@@ -31,7 +31,7 @@ self.addEventListener('activate', (event) => {
       const keys = await caches.keys();
       await Promise.all(keys.map((k) => caches.delete(k)));
     } catch (e) {
-      // ignore — cache API may be unavailable
+      // ignore, cache API may be unavailable
     }
 
     // 2. Remove this worker so the origin goes back to plain networking

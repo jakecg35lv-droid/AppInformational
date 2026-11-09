@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════
-       TIPOFF FANTASY — informational site
+       TIPOFF FANTASY: informational site
        Palette matched to the app: navy + orange
     ══════════════════════════════════════════════════════════ */
 
@@ -610,7 +610,7 @@
     }
 
     .vs-list li::before {
-      content: '—';
+      content: '•';
       position: absolute;
       left: 0;
       color: var(--muted);
@@ -1076,7 +1076,7 @@
     /* ══════════════════════════════════════════════════════════
        MOTION SYSTEM
        Scroll-triggered reveals driven by IntersectionObserver.
-       Elements start hidden ONLY once JS confirms it is running —
+       Elements start hidden ONLY once JS confirms it is running,
        html.js is set by an inline script in <head>. Without that
        guard, a JS failure would leave the whole page invisible.
     ══════════════════════════════════════════════════════════ */
@@ -1470,12 +1470,12 @@
     }
 
 /* ══════════════════════════════════════════════════════════
-   MOBILE OVERFLOW FIX — .formula
+   MOBILE OVERFLOW FIX: .formula
    Measured at 375px: index.html and scoring.html both scrolled
    sideways by ~205px. Every other page was clean.
 
    Cause: .formula is one long `white-space: nowrap` line (~565px).
-   It has overflow-x:auto, which should have contained it — but a
+   It has overflow-x:auto, which should have contained it, but a
    grid/flex child defaults to `min-width: auto`, meaning it refuses
    to shrink below its content. So instead of scrolling inside its
    own box it inflated a 339px column to 565px and dragged the whole

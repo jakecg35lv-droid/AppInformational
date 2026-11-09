@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════
-   TIPOFF FANTASY — site motion
+   TIPOFF FANTASY: site motion
    Scroll reveals + count-up numbers, shared by every page.
 
    Was inline on index.html only, which meant the homepage had
@@ -119,7 +119,7 @@
       function frame(ts) {
         if (!start) start = ts;
         var p = Math.min((ts - start) / duration, 1);
-        // easeOutExpo — quick off the line, lands softly on the number
+        // easeOutExpo: quick off the line, lands softly on the number
         var eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
         el.textContent = Math.round(target * eased);
         if (p < 1) requestAnimationFrame(frame);
