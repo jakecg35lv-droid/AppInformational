@@ -1693,3 +1693,74 @@
   padding-bottom: 2px;
 }
 .foot-email:hover { color: var(--orange); text-decoration: none; }
+
+
+/* ══════════════════════════════════════════════════════════
+   TRIVIA PROMINENCE: announcement bar, nav pill, badges
+══════════════════════════════════════════════════════════ */
+.trv-bar {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 9px 16px;
+  background: linear-gradient(90deg, rgba(242,107,33,.20), rgba(246,168,78,.14) 50%, rgba(242,107,33,.20));
+  border-bottom: 1px solid var(--border-accent);
+  color: var(--text); font-size: 13.5px; font-weight: 600; text-decoration: none;
+  text-align: center; line-height: 1.35;
+}
+.trv-bar:hover { text-decoration: none; background: linear-gradient(90deg, rgba(242,107,33,.30), rgba(246,168,78,.22) 50%, rgba(242,107,33,.30)); }
+.trv-bar-tag, .nav-trivia-new {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  background: var(--grad-primary); color: #fff;
+  padding: 3px 7px; border-radius: 999px; line-height: 1; flex-shrink: 0;
+}
+.trv-bar-cta { color: var(--orange-light); font-weight: 800; white-space: nowrap; }
+.trv-bar:hover .trv-bar-cta { color: #fff; }
+.trv-bar-short { display: none; }
+@media (max-width: 760px) {
+  .trv-bar-long { display: none; }
+  .trv-bar-short { display: inline; }
+}
+/* Mobile menu is pinned 68px from the top; drop the bar while it is open */
+body.menu-open .trv-bar { display: none; }
+
+/* Nav pill */
+.nav-links a.nav-trivia {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 8px 6px 12px; margin: -6px 0;
+  border: 1px solid var(--border-accent); border-radius: 999px;
+  background: rgba(242,107,33,.10);
+  color: var(--text); font-weight: 700;
+  transition: background .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.nav-links a.nav-trivia:hover { background: rgba(242,107,33,.20); border-color: var(--orange); box-shadow: var(--glow); color: #fff; }
+.nav-links a.nav-trivia.active { color: #fff; background: rgba(242,107,33,.24); border-color: var(--orange); }
+.nav-links a.nav-trivia.active::after { display: none; }
+.nav-links { align-items: center; }
+.nav-trivia-new { font-size: 9px; padding: 3px 6px; }
+.nav-trivia-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--orange);
+  animation: trv-pulse 1.8s ease-out infinite; flex-shrink: 0;
+}
+@keyframes trv-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(242,107,33,.7); }
+  70% { box-shadow: 0 0 0 7px rgba(242,107,33,0); }
+  100% { box-shadow: 0 0 0 0 rgba(242,107,33,0); }
+}
+
+/* Mobile menu + footer */
+.mm-inner a.mm-trivia { display: flex; align-items: center; justify-content: space-between; color: var(--orange-light); font-weight: 800; }
+.foot-links a.foot-trivia { display: inline-flex; align-items: center; gap: 6px; color: var(--orange-light); font-weight: 700; }
+.foot-links a.foot-trivia .nav-trivia-new { font-size: 8.5px; padding: 2px 5px; }
+
+/* Homepage teaser: stronger frame now that it sits under the hero */
+.trv-teaser {
+  border-top: 1px solid var(--border-accent); border-bottom: 1px solid var(--border-accent);
+  background: radial-gradient(ellipse at 15% 0%, rgba(242,107,33,.16), transparent 60%), var(--panel-solid);
+}
+.trv-badge {
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--orange-light);
+  padding: 7px 12px; border: 1px solid var(--border-accent); border-radius: 999px; background: rgba(242,107,33,.10);
+}
+@media (prefers-reduced-motion: reduce) { .nav-trivia-dot { animation: none; } }
