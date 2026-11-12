@@ -1764,3 +1764,35 @@ body.menu-open .trv-bar { display: none; }
   padding: 7px 12px; border: 1px solid var(--border-accent); border-radius: 999px; background: rgba(242,107,33,.10);
 }
 @media (prefers-reduced-motion: reduce) { .nav-trivia-dot { animation: none; } }
+
+
+/* ══════════════════════════════════════════════════════════
+   FOOTER LAYOUT: brand + legal left, email + socials right,
+   links on their own row underneath. Replaces the old
+   flex-wrap layout that broke once the links got wider.
+══════════════════════════════════════════════════════════ */
+footer { margin-top: 0; padding: 48px 0 40px; }
+.foot-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr auto;
+  gap: 16px 48px;
+  align-items: start;
+}
+.foot-inner > div:first-child { grid-column: 1; grid-row: 1 / span 2; }
+.foot-right { display: contents; }
+.foot-email { grid-column: 2; grid-row: 1; justify-self: end; }
+.foot-socials { grid-column: 2; grid-row: 2; justify-self: end; }
+.foot-links {
+  grid-column: 1 / -1; grid-row: 3;
+  margin-top: 12px; padding-top: 22px;
+  border-top: 1px solid var(--border);
+  gap: 12px 28px;
+}
+.foot-legal { margin-top: 14px; }
+@media (max-width: 700px) {
+  .foot-inner { grid-template-columns: 1fr; gap: 20px; }
+  .foot-inner > div:first-child,
+  .foot-email, .foot-socials, .foot-links { grid-column: 1; grid-row: auto; justify-self: start; }
+  .foot-links { margin-top: 4px; }
+}
